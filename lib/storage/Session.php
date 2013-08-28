@@ -1,5 +1,7 @@
 <?php
 
+namespace lib\storage;
+
 class Session {
 
   private function __construct(){}

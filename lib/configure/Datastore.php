@@ -2,7 +2,7 @@
 
 namespace lib\configure;
 
-class Configure {  
+class Datastore {  
 //extends \lib\configure\BaseConfigure {
   
   protected static $configMap = array();
@@ -27,6 +27,4 @@ class Configure {
   public static function getMap(){
     return self::$configMap;
   }
-
-
 }

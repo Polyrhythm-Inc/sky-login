@@ -4,10 +4,20 @@ require_once (dirname(__FILE__) . '/../SkyLogin.php');
 
 use SkyLogin\SkyLogin;
 
+SkyLogin::connectionAdd('default', array(
+    'host' => 'localhost',
+    'port' => null,
+    'user' => 'root',
+    'passwd' => 'y_takei',
+    'db' => 'sky_login',
+  )
+);
+
 //initialization SkyLogin Module
 SkyLogin::initialize('SessionLogin');
 
-SkyLogin::auth();
+//authorization
+SkyLogin::auth($_REQUEST);
 
 ?>
 

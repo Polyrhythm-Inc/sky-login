@@ -10,6 +10,7 @@ $classLoader->register();
 
 
 use lib\configure\Configure;
+use lib\configure\Datastore;
 
 class SkyLogin {
 
@@ -33,6 +34,14 @@ class SkyLogin {
     self::$activatedPlatformList[$platformName] = new $className();
     self::$currentPlatformId = $platformName;
 
+  }
+
+  public static function configAdd($key, $val){
+    Configure::write($key, $val);
+  }
+
+  public static function connectionAdd($key, $val){
+    Datastore::write($key, $val);
   }
 
   public static function __callStatic($name, $arguments = array()){
