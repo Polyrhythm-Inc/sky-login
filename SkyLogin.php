@@ -3,11 +3,12 @@
 namespace SkyLogin;
 
 //module dependencies
-require_once(dirname(__FILE__) . "/vendors/SplClassLoader.php");
+require_once dirname(__FILE__) . '/vendors/php-activerecord/ActiveRecord.php';
+require_once dirname(__FILE__) . "/vendors/SplClassLoader.php";
+
 //auto loader
 $classLoader = new \SplClassLoader(null, __DIR__);
 $classLoader->register();
-
 
 use lib\configure\Configure;
 use lib\configure\Datastore;
@@ -15,16 +16,16 @@ use lib\configure\Datastore;
 class SkyLogin {
 
   /*   properties   */
-
   private static $currentPlatformId = null;
 
   private static $activatedPlatformList = array();
 
   /*   methods   */
-
   private function __construct(){}
 
   public static function initialize($platformName = null){
+
+    require_once dirname(__FILE__) . '/lib/boot.php';
 
     //Configure::parseJson('platforms', dirname(__FILE__) . '/resource/platform.json');
 
@@ -36,16 +37,8 @@ class SkyLogin {
 
   }
 
-  public static function configAdd($key, $val){
-    Configure::write($key, $val);
-  }
-
-  public static function connectionAdd($key, $val){
-    Datastore::write($key, $val);
-  }
-
   public static function __callStatic($name, $arguments = array()){
-    return self::$activatedPlatformList[self::$currentPlatformId]->$name($arguments);
+    return call_user_func_array(array(self::$activatedPlatformList[self::$currentPlatformId], $name), $arguments);
   }
 
   public static function getInstance($platformName){
@@ -65,8 +58,22 @@ class SkyLogin {
   }
 
   private static function getPlatformClassName($platformName){
-    $className = "\\lib\agent\\" . $platformName;
+    $className = "\\lib\\agent\\" . $platformName;
     return $className;
   }
 
+}
+
+class Connection {
+  public static function __callStatic($name, $arguments = array()){
+    $class = "\\lib\\configure\\Datastore";
+    return call_user_func_array(array($class, $name), $arguments);
+  }
+}
+
+class Config {
+  public static function __callStatic($name, $arguments = array()){
+    $class = "\\lib\configure\\Configure";
+    return call_user_func_array(array($class, $name), $arguments);
+  }
 }

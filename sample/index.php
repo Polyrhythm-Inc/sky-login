@@ -3,13 +3,14 @@
 require_once (dirname(__FILE__) . '/../SkyLogin.php');
 
 use SkyLogin\SkyLogin;
+use SkyLogin\Connection;
 
-SkyLogin::connectionAdd('default', array(
+Connection::add('default', array(
     'host' => 'localhost',
     'port' => null,
     'user' => 'root',
     'passwd' => 'y_takei',
-    'db' => 'sky_login',
+    'db' => 'skylogin',
   )
 );
 

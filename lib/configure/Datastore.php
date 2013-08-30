@@ -13,7 +13,7 @@ class Datastore {
     self::$configMap[$key] = $j;
   }
 
-  public static function write($key, $value){
+  public static function add($key, $value){
     self::$configMap[$key] = $value;
   }
 
