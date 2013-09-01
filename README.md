@@ -20,7 +20,7 @@ $ bin/migrate
 <pre>
 &lt;?php
 
-require_once (dirname(__FILE__) . '/../SkyLogin.php');
+require 'SkyLogin.php';
 
 use SkyLogin\SkyLogin;
 use SkyLogin\Connection;
@@ -42,3 +42,6 @@ SkyLogin::initialize('SessionLogin');
 </pre>
 
 ### Authentication
+<pre>
+SkyLogin::auth($_REQUET);
+</pre>
