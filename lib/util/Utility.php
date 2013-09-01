@@ -1,15 +1,10 @@
 <?php
 
-namespace lib;
+namespace lib\util;
 
-class Util {
-
+class Utility {
 
   public static function isValidEmailFormat($s, $supportPeculiarFormat = true){
-
-    function isValidEmailFormat($email, $supportPeculiarFormat = true){
-
-var_dump($email);
 
       $wsp              = '[\x20\x09]'; // 半角空白と水平タブ
       $vchar            = '[\x21-\x7e]'; // ASCIIコードの ! から ~ まで
@@ -36,17 +31,15 @@ var_dump($email);
           $regexp = $addr_spec;
       }
       // \A は常に文字列の先頭にマッチする。\z は常に文字列の末尾にマッチする。
-      if(preg_match("/\A{$regexp}\z/", $email)){
+      if(preg_match("/\A{$regexp}\z/", $s)){
           return true;
       }else{
           return false;
       }
-
-      return isValidEmailFormat($s, $supportPeculiarFormat);
-
   }
 
-}
-
+  public static function createHashId($key = null){
+    return sha1($key . microtime() . mt_rand(0,1000));
+  }
 
 }

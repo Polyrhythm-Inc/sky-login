@@ -6,8 +6,8 @@ use lib\agent\provider\AgentProvider;
 use lib\agent\BaseAgent;
 use lib\exception\UnexpectedParameterException;
 use lib\storage\Session;
-use lib\datastore\dao\User;
-use lib\Util;
+use lib\model\dao\User;
+use lib\util\Utility;
 
 class SessionLogin extends BaseAgent implements AgentProvider {
 
@@ -24,11 +24,19 @@ class SessionLogin extends BaseAgent implements AgentProvider {
     if(isset($this->req['user_name']) && isset($this->req['password'])){
       $userName = $this->req['user_name'];
       $password = $this->req['password'];
+
+
+      $isEmaiLogin = Utility::isValidEmailFormat('yuki@miketokyo.com');
+
+      $exists = false;
+
+      if($isEmaiLogin){
+        $exists = User::getByEmailAndPasswd('yuki@miketokyo.com', 'pass');
+      }else{
+        $exists = User::getByNameAndPasswd('chantake', 'pass');
+      }
+      
     }
-
-    var_dump(Util::isValidEmailFormat('yuki@miketokyo.com'));
-
-    $exists = User::getByEmailAndPasswd('yuki@miketokyo.com', 'pass');
 
     //var_dump($exists);
 

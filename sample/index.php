@@ -1,25 +1,5 @@
 <?php
-
-require_once (dirname(__FILE__) . '/../SkyLogin.php');
-
-use SkyLogin\SkyLogin;
-use SkyLogin\Connection;
-
-Connection::add('default', array(
-    'host' => 'localhost',
-    'port' => null,
-    'user' => 'root',
-    'passwd' => 'y_takei',
-    'db' => 'skylogin',
-  )
-);
-
-//initialization SkyLogin Module
-SkyLogin::initialize('SessionLogin');
-
-//authorization
-SkyLogin::auth($_REQUEST);
-
+  include dirname(__FILE__) . '/base_setting.php';
 ?>
 
 <html>

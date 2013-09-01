@@ -1,8 +1,8 @@
 <?php
 
-namespace lib\datastore\dao;
+namespace lib\model\dao;
 
-use \lib\datastore\client\MysqlClient;
+use \lib\model\client\MysqlClient;
 
 class BaseDao {
 
