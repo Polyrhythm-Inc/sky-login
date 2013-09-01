@@ -43,5 +43,9 @@ SkyLogin::initialize('SessionLogin');
 
 ### Authentication
 <pre>
-SkyLogin::auth($_REQUET);
+SkyLogin::auth($_REQUET, function($me){
+    
+    //some logic here
+
+});
 </pre>
