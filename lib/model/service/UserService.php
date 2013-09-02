@@ -34,12 +34,13 @@ class UserService {
       $c->transaction();
 
       $res = UserIdRelation::add($hashId);
+
       if(empty($res)){
         throw new Exception('User registration was failed.');
       }
 
       $params = array(
-        'user_id_relation_sequence_id' => $res->id,
+        'user_id_relation_sequence_id' => $res['id'],
         'name' => $userName,
         'display_name' => $userName,
         'email' => $email,
@@ -55,13 +56,11 @@ class UserService {
 
       $c->commit();
 
-      return true;
+      return User::first($res->id);
 
-    }catch(Exception $e){
-      $c1->rollback();
-      $c2->rollback();
-
-      return false;
+    }catch(\Exception $e){
+      throw $e;
+      $c->rollback();
     }
 
   }

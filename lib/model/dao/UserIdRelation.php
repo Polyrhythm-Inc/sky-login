@@ -19,7 +19,7 @@ class UserIdRelation extends \ActiveRecord\Model {
     $sql = 'INSERT INTO '.$table->table.' ';
     $sql .= '(hash_id, hash_id_dec, created, modified) ';
     $sql .= 'VALUES ';
-    $castValue = 'CAST(x' . $hashId . " as SIGNED)";
+    $castValue = 'CAST(x' . $hashId . " as UNSIGNED)";
     $sql .= "({$hashId}, $castValue, '{$now}', '{$now}')";
 
     try {
@@ -45,7 +45,7 @@ class UserIdRelation extends \ActiveRecord\Model {
     $hashId = self::connection()->escape($hashId);
 
     $sql = "SELECT id, hash_id, hash_id_dec FROM user_id_relations ";
-    $castValue = 'CAST(x' . $hashId . " as SIGNED)";
+    $castValue = 'CAST(x' . $hashId . " as UNSIGNED)";
     $sql .= "WHERE hash_id_dec = " . $castValue;
 
     try {

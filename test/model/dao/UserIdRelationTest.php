@@ -86,7 +86,7 @@ class UserIdRelationTest extends \PHPUnit_Framework_TestCase {
 
 
   protected function tearDown(){
-    //UserIdRelation::connection()->query('TRUNCATE ' . $this->tableName);
+    UserIdRelation::connection()->query('TRUNCATE ' . $this->tableName);
   }
 
 }
