@@ -23,10 +23,8 @@ $ bin/migrate
 require 'SkyLogin.php';
 
 use SkyLogin\SkyLogin;
-use SkyLogin\Connection;
-use SkyLogin\Config;
 
-Connection::add('default', array(
+\SkyLogin\Connection::add('default', array(
     'host' => 'localhost',
     'port' => null,
     'user' => 'user',
@@ -35,7 +33,7 @@ Connection::add('default', array(
   )
 );
 
-Config::write('securitySalt', 'o1ty8ha@-m^');
+\SkyLogin\Config::write('securitySalt', 'o1ty8ha@-m^');
 
 //initialization SkyLogin Module
 SkyLogin::initialize('SessionLogin');
