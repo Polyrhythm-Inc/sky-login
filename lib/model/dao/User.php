@@ -32,7 +32,6 @@ class User extends \ActiveRecord\Model {
         'user_id_relation_sequence_id',
         'email',
         'password',
-        'current_platform_id',
         'role_id'
       )
     );
