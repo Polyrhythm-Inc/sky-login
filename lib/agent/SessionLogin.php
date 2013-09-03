@@ -18,7 +18,7 @@ class SessionLogin extends BaseAgent implements AgentProvider {
 
   public function __construct(){}
 
-  public function auth($req = array(), $callback = null){
+  public function auth($callback = null){
 
     $this->req = new Request();
 
