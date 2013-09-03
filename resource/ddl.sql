@@ -1,3 +1,16 @@
+CREATE TABLE IF NOT EXISTS `roles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
 CREATE TABLE IF NOT EXISTS `users` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_id_relation_sequence_id` bigint(20) DEFAULT NULL,
@@ -48,5 +61,6 @@ CREATE TABLE IF NOT EXISTS `user_platform_each_authentications` (
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `platform_id_auth_token` (`platform_id`,`auth_token`)
+  UNIQUE KEY `platform_id_auth_token` (`platform_id`,`auth_token`),
+  UNIQUE KEY `platform_id_and_user_id` (`platform_id`,`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;

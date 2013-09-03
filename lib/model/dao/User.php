@@ -5,7 +5,7 @@ namespace lib\model\dao;
 use lib\exception\UnexpectedParameterException;
 use lib\util\Validator;
 
-class User extends \ActiveRecord\Model { 
+class User extends \lib\model\dao\BaseDao { 
 
   public static function getByUserId($id){
     
@@ -21,7 +21,7 @@ class User extends \ActiveRecord\Model {
     if(empty($id)){
       throw new UnexpectedParameterException;
     }
-    return self::find_by_user_id_sequence_id($id);
+    return self::find_by_user_id_and_sequence_id($id);
   }
 
   public static function add($params = array(), $passwordHashChange = true){

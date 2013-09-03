@@ -4,7 +4,7 @@ namespace lib\model\dao;
 
 use lib\exception\UnexpectedParameterException;
 
-class UserIdRelation extends \ActiveRecord\Model { 
+class UserIdRelation extends \lib\model\dao\BaseDao { 
 
   public static function add($hashId){
 
