@@ -25,8 +25,10 @@ class SessionLogin extends BaseAgent implements AgentProvider {
     Session::start();
 
     //Login and registration.
-    if( (!is_null($this->req->post('user_name')) || !is_null($this->req->post('email')) ) && !is_null($this->req->post('password')) ){
-
+    if($this->req->isPost() 
+      && (!is_null($this->req->post('user_name')) || !is_null($this->req->post('email')) ) 
+      && !is_null($this->req->post('password')) )
+    {
       //get params from request.
       $userName = !is_null($this->req->post('user_name')) ? $this->req->post('user_name') : null;
       $email = !is_null($this->req->post('email')) ? $this->req->post('email') : null;

@@ -17,14 +17,25 @@ class Request {
 
   public function __call($name, $args){
 
-    if(in_array($name, $this->methodMap) && $name == $this->method){
-      if(isset($this->map[$args[0]])){
+
+    if(substr($name, 0, 2) == 'is'){
+      foreach ($this->methodMap as $key => $val) {
+        if($name == 'is' . ucfirst($val) && $this->method == $val){
+          return true;
+        }
+      }
+      return false;
+    }
+
+    if(in_array($name, $this->methodMap)){
+      if(isset($this->map[$args[0]]) && $name == $this->method){
         return $this->map[$args[0]];
       }
       return null;
     }
 
-    return null;
+
+    throw new \Exception('Call to undefined method:' . $name);
 
   }
 }
