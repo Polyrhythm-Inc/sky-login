@@ -22,8 +22,6 @@ $ bin/migrate
 
 require 'SkyLogin.php';
 
-use SkyLogin\SkyLogin;
-
 \SkyLogin\Connection::add('default', array(
     'host' => 'localhost',
     'port' => null,
@@ -36,12 +34,12 @@ use SkyLogin\SkyLogin;
 \SkyLogin\Config::write('securitySalt', 'o1ty8ha@-m^');
 
 //initialization SkyLogin Module
-SkyLogin::initialize('SessionLogin');
+\SkyLogin\Platform::initialize('SessionLogin');
 </pre>
 
 ### Authentication
 <pre>
-SkyLogin::auth($_REQUET, function($me){
+\SkyLogin\Platform::auth($_REQUET, function($me){
     
     //some logic here
 
