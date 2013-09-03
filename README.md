@@ -39,7 +39,7 @@ require 'SkyLogin.php';
 
 ### Authentication
 <pre>
-\SkyLogin\Platform::auth($_REQUET, function($me){
+\SkyLogin\Platform::auth(function($me){
     
     //some logic here
 
