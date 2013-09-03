@@ -29,7 +29,11 @@ class UserServiceTest extends \PHPUnit_Framework_TestCase {
         'email' => 'user3@sample.com',
         'password' => 'password',
         'role' => 2,
-        'hash_id' => Utility::createHashId('test_user1')
+        'hash_id' => Utility::createHashId('test_user1'),
+        'platform_id' => 1,
+        'platform_user_id' => 'hogehoge',
+        'auth_token' => sha1('hogehoge'),
+        'expires' => '1988-07-22 00:00:00'
       );
 
       $res = UserService::register($testData);
@@ -58,7 +62,11 @@ class UserServiceTest extends \PHPUnit_Framework_TestCase {
         'email' => 'user3@sample.com',
         'password' => 'password',
         'role' => 2,
-        'hash_id' => "' OR1=1 --"
+        'hash_id' => "' OR1=1 --",
+        'platform_id' => 1,
+        'platform_user_id' => 'hogehoge',
+        'auth_token' => sha1('hogehoge'),
+        'expires' => '1988-07-22 00:00:00'        
       );
 
       try{

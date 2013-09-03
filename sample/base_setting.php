@@ -2,11 +2,7 @@
 
 require_once (dirname(__FILE__) . '/../SkyLogin.php');
 
-use SkyLogin\SkyLogin;
-use SkyLogin\Connection;
-use SkyLogin\Config;
-
-Connection::add('default', array(
+\SkyLogin\Connection::add('default', array(
     'host' => 'localhost',
     'port' => null,
     'user' => 'root',
@@ -15,10 +11,7 @@ Connection::add('default', array(
   )
 );
 
-Config::write('securitySalt', 'o1ty8ha@-m^');
+\SkyLogin\Config::write('securitySalt', 'o1ty8ha@-m^');
 
 //initialization SkyLogin Module
-SkyLogin::initialize('SessionLogin');
-
-//authorization
-SkyLogin::auth($_REQUEST);
+\SkyLogin\Platform::initialize('SessionLogin');

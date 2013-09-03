@@ -22,9 +22,6 @@ class UserPlatformEachAuthentication extends \lib\model\dao\BaseDao {
       array(
         'user_id',
         'platform_id',
-        'platform_user_id',
-        'auth_token',
-        'expires',
       )
     );
 

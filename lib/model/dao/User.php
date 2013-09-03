@@ -5,7 +5,7 @@ namespace lib\model\dao;
 use lib\exception\UnexpectedParameterException;
 use lib\util\Validator;
 
-class User extends \lib\model\dao\BaseDao { 
+class User extends \lib\model\dao\BaseDao {
 
   public static function getByUserId($id){
     
@@ -37,14 +37,21 @@ class User extends \lib\model\dao\BaseDao {
     );
 
     $now = date('Y-m-d H:i:s');
-
-    if($passwordHashChange){
-      $params['password'] = sha1($params['password'] . \lib\configure\Configure::get('securitySalt'));
-    }
     $params['created'] = $now;
     $params['modified'] = $now;
     return self::create($params);
   }
+
+
+  public static function getByNameAndEmailAndPasswd($name, $email, $passwd){
+
+    if(empty($name) || empty($email) || empty($passwd)){
+      throw new UnexpectedParameterException;
+    }
+
+    return self::find_by_name_and_email_and_password($name, $email, $passwd);
+  }
+
 
   public static function getByEmailAndPasswd($email, $passwd){
 

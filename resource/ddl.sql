@@ -1,3 +1,7 @@
+--
+-- Table structure for table `roles`
+--
+
 CREATE TABLE IF NOT EXISTS `roles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
@@ -24,8 +28,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `email_password` (`email`,`password`),
-  UNIQUE KEY `name_password` (`name`,`password`)
+  UNIQUE KEY `name_email_password` (`name`,`email`,`password`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -63,4 +66,4 @@ CREATE TABLE IF NOT EXISTS `user_platform_each_authentications` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `platform_id_auth_token` (`platform_id`,`auth_token`),
   UNIQUE KEY `platform_id_and_user_id` (`platform_id`,`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;

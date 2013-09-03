@@ -13,7 +13,7 @@ $classLoader->register();
 use lib\configure\Configure;
 use lib\configure\Datastore;
 
-class SkyLogin {
+class Platform {
 
   /*   properties   */
   private static $currentPlatformId = null;

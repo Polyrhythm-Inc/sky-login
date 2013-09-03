@@ -2,8 +2,9 @@
 
 namespace lib\agent;
 
+use lib\model\User;
 
-class BaseAgent {
+abstract class BaseAgent {
   
   protected $isAuthorized = false;
 
@@ -12,5 +13,4 @@ class BaseAgent {
   public function isAuthorized(){
     return $this->isAuthorized;
   }
-
 }

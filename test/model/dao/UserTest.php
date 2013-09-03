@@ -19,6 +19,64 @@ class UserTest extends \PHPUnit_Framework_TestCase {
     User::create($json);
   }
 
+  public function testGetByNameAndEmailAndPasswd(){
+    
+    /*正常系（該当レコード有り）*/
+    {
+      $name = "test_user";
+      $email = 'test@sample.com';
+      $password = 'd0be2dc421be4fcd0172e5afceea3970e2f3d940';
+
+      $expected = array(
+        "id" => 1,
+        "user_id_relation_sequence_id" => 1,
+        "name" => "test_user",
+        "display_name" => '日本語入力OK',
+        "email" => "test@sample.com",
+        "password" => "d0be2dc421be4fcd0172e5afceea3970e2f3d940",
+        "image_url" => null,
+        "current_platform_id" => 1,
+        "role_id" => 0,
+        "created" => null,
+        "modified" => null
+      );
+
+      $results = User::getByNameAndEmailAndPasswd($name, $email, $password);
+      
+      $this->assertEquals($results->to_array(), $expected);
+    }
+
+    /*正常系(該当レコード無し)*/
+    {
+      $name = "testman";
+      $email = 'test@sample.com';
+      $password = 'p';
+      $expected = null;
+
+      $results = User::getByNameAndEmailAndPasswd($name, $email, $password);
+
+      $this->assertEquals($results, $expected);
+    }
+
+    /*異常系（引数が不正）*/
+    {
+      try{
+
+        $name = null;
+        $email = null;
+        $password = null;
+        $results = User::getByNameAndEmailAndPasswd($name, $email, $password);
+
+      }catch(UnexpectedParameterException $e){
+
+        $this->assertEquals($e, new UnexpectedParameterException);
+
+      }
+    }
+
+  }
+
+
   public function testGetByEmailAndPasswd(){
     
     /*正常系（該当レコード有り）*/
@@ -72,6 +130,63 @@ class UserTest extends \PHPUnit_Framework_TestCase {
     }
 
   }
+
+
+  public function testGetByNameAndPasswd(){
+    
+    /*正常系（該当レコード有り）*/
+    {
+      $name = 'test_user';
+      $password = 'd0be2dc421be4fcd0172e5afceea3970e2f3d940';
+
+      $expected = array(
+        "id" => 1,
+        "user_id_relation_sequence_id" => 1,
+        "name" => "test_user",
+        "display_name" => '日本語入力OK',
+        "email" => "test@sample.com",
+        "password" => "d0be2dc421be4fcd0172e5afceea3970e2f3d940",
+        "image_url" => null,
+        "current_platform_id" => 1,
+        "role_id" => 0,
+        "created" => null,
+        "modified" => null
+      );
+
+      $results = User::getByNameAndPasswd($name, $password);    
+      
+      $this->assertEquals($results->to_array(), $expected);
+    }
+
+    /*正常系(該当レコード無し)*/
+    {
+      $name = 'testman';
+      $password = 'p';
+      $expected = null;
+
+      $results = User::getByNameAndPasswd($name, $password);    
+
+      $this->assertEquals($results, $expected);
+    }
+
+    /*異常系（引数が不正）*/
+    {
+      try{
+
+        $name = null;
+        $password = null;
+        $results = User::getByNameAndPasswd($name, $password);
+
+      }catch(UnexpectedParameterException $e){
+
+        $this->assertEquals($e, new UnexpectedParameterException);
+
+      }
+    }
+
+  }
+
+
 
   public function testAdd(){
     

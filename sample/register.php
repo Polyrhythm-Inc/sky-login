@@ -1,5 +1,14 @@
 <?php
   include dirname(__FILE__) . '/base_setting.php';
+
+
+  //authorization
+  //SkyLogin::auth($_REQUEST);
+
+  if(isset($_POST['sub'])){
+    \SkyLogin\Platform::auth($_REQUEST);     
+  }
+
 ?>
 
 <html>
@@ -42,7 +51,7 @@
   <body>
     <div class="container">
 
-      <form class="form-signin">
+      <form class="form-signin" method="POST">
         <h2 class="form-signin-heading">User registration</h2>
         <input type="text" name="user_name" class="input-block-level" placeholder="User name">
         <input type="text" name="email" class="input-block-level" placeholder="Email address">
@@ -50,7 +59,7 @@
         <label class="checkbox">
           <input type="checkbox" value="remember-me"> Remember me
         </label>
-        <button class="btn btn-large btn-primary" type="submit">Sign in</button>
+        <button class="btn btn-large btn-primary" type="submit" name="sub">Sign in</button>
       </form>
 
     </div> <!-- /container -->

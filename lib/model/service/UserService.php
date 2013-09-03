@@ -4,6 +4,7 @@ namespace lib\model\service;
 
 use lib\model\dao\User;
 use lib\model\dao\UserIdRelation;
+use lib\model\dao\UserPlatformEachAuthentication;
 use lib\util\Utility;
 use lib\util\Validator;
 
@@ -17,7 +18,8 @@ class UserService {
         'email',
         'password',
         'role',
-        'hash_id'
+        'hash_id',
+        'platform_id'
         )
     );
 
@@ -39,7 +41,7 @@ class UserService {
         throw new Exception('User registration was failed.');
       }
 
-      $params = array(
+      $data = array(
         'user_id_relation_sequence_id' => $res['id'],
         'name' => $userName,
         'display_name' => $userName,
@@ -47,9 +49,30 @@ class UserService {
         'password' => $password,
         'role_id' => $roleId
       );
-      
 
-      $res = User::add($params);
+      $res = User::add($data);
+      if(empty($res)){
+        throw new Exception('User registration was failed.');
+      }
+
+      $data = array(
+        'user_id' => $res->id,
+        'platform_id' => $params['platform_id'],
+      );
+        
+      if(isset($params['platform_user_id'])){
+        $data['platform_user_id'] = $params['platform_user_id'];
+      }
+
+      if(isset($params['auth_token'])){
+        $data['auth_token'] = $params['auth_token']; 
+      }
+
+      if(isset($params['expires'])){
+        $data['expires'] = $params['expires'];
+      }
+
+      $res = UserPlatformEachAuthentication::add($data);
       if(empty($res)){
         throw new Exception('User registration was failed.');
       }
