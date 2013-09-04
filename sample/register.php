@@ -1,13 +1,45 @@
 <?php
-  include dirname(__FILE__) . '/base_setting.php';
 
+include dirname(__FILE__) . '/base_setting.php';
 
-  //authorization
-  //SkyLogin::auth($_REQUEST);
+$req = new \SkyLogin\Request();
 
-  if(isset($_POST['sub'])){
-    \SkyLogin\Platform::auth($_REQUEST);     
-  }
+if($req->isPost() 
+    && !is_null($req->post('user_name')) 
+    && !is_null($req->post('email')) 
+    && !is_null($req->post('password')) )
+  {
+
+  $userName = !is_null($req->post('user_name')) ? $req->post('user_name') : null;
+  $email = !is_null($req->post('email')) ? $req->post('email') : null;
+  $password = !is_null($req->post('password')) ? 
+    sha1( $req->post('password') . \lib\configure\Configure::get('securitySalt') ) : null;
+  $role = !is_null($req->post('role')) ? $req->post('role') : 2;
+
+  $status = \SkyLogin\Platform::register(
+    array(
+      'user_name' => $userName,
+      'email' => $email,
+      'password' => $password,
+      'role' => $role,
+      'hash_id' => sha1($userName . microtime() . mt_rand(0,1000))
+    )
+  );
+
+  \SkyLogin\Platform::login(
+    array(
+      'login' => $userName
+      , 'password' => $password
+    ));
+}
+
+\SkyLogin\Platform::auth();
+
+$isAuthorized = \SkyLogin\Platform::isAuthorized();
+
+if($isAuthorized){
+  header('Location: /sky-login/sample/login.php');
+}
 
 ?>
 

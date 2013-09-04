@@ -1,6 +1,6 @@
 <?php
 
-namespace lib\agent;
+namespace lib\platform\agent;
 
 use lib\model\User;
 
