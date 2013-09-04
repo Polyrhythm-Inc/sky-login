@@ -33,13 +33,15 @@ if($req->isPost()
     ));
 }
 
-\SkyLogin\Platform::auth();
+\SkyLogin\Platform::auth(function($me){
 
-$isAuthorized = \SkyLogin\Platform::isAuthorized();
+  $isAuthorized = \SkyLogin\Platform::isAuthorized();
 
-if($isAuthorized){
-  header('Location: /sky-login/sample/login.php');
-}
+  if($isAuthorized){
+    header('Location: /sky-login/sample/login.php');
+  }
+
+});
 
 ?>
 
