@@ -82,8 +82,10 @@ class UserService {
       return User::first($res->id);
 
     }catch(\Exception $e){
-      throw $e;
+      
       $c->rollback();
+      
+      throw $e;
     }
 
   }
