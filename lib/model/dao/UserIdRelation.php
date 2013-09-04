@@ -28,7 +28,9 @@ class UserIdRelation extends \lib\model\dao\BaseDao {
         throw new \ActiveRecord\DatabaseException($this);  
       }
 
-      return true;
+      return array(
+        'id' => self::connection()->connection->lastInsertId()
+      );
 
     } catch (\PDOException $e) {
       throw new \ActiveRecord\DatabaseException($e);

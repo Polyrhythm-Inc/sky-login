@@ -22,7 +22,7 @@ class UserIdRelationTest extends \PHPUnit_Framework_TestCase {
     //正常系
     {
       $res = UserIdRelation::add(Utility::createHashId('user_name1'));
-      $this->assertEquals($res, true);
+      $this->assertEquals($res, array('id' => '1'));
     }
 
 
