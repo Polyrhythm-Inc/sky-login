@@ -6,20 +6,20 @@ $req = new \SkyLogin\Request();
 
 $status = 0;
 
-if($req->isPost() 
-    && !is_null($req->post('user_name')) 
-    && !is_null($req->post('password')) )
-  {
+if($req->isPost()) {
+  
+  if($req->post('user_name') !== "" && $req->post('password') !== "" ){
 
-  $userName = !is_null($req->post('user_name')) ? $req->post('user_name') : null;
-  $password = !is_null($req->post('password')) ? 
-    sha1( $req->post('password') . \SkyLogin\Configure::get('securitySalt') ) : null;
+    $userName = !is_null($req->post('user_name')) ? $req->post('user_name') : null;
+    $password = !is_null($req->post('password')) ? 
+      sha1( $req->post('password') . \SkyLogin\Configure::get('securitySalt') ) : null;
 
-  $status = \SkyLogin\Platform::login(
-    array(
-      'login' => $userName
-      , 'password' => $password
-  ));
+    $status = \SkyLogin\Platform::login(
+      array(
+        'login' => $userName
+        , 'password' => $password
+    ));
+  }
 }
 
 \SkyLogin\Platform::auth(function($me){

@@ -4,33 +4,31 @@ include dirname(__FILE__) . '/base_setting.php';
 
 $req = new \SkyLogin\Request();
 
-if($req->isPost() 
-    && !is_null($req->post('user_name')) 
-    && !is_null($req->post('email')) 
-    && !is_null($req->post('password')) )
-  {
+if($req->isPost()) {
+  if($req->post('user_name') !== "" && $req->post('password') !== "" && $req->post('email') !== ""){
 
-  $userName = !is_null($req->post('user_name')) ? $req->post('user_name') : null;
-  $email = !is_null($req->post('email')) ? $req->post('email') : null;
-  $password = !is_null($req->post('password')) ? 
-    sha1( $req->post('password') . \lib\configure\Configure::get('securitySalt') ) : null;
-  $role = !is_null($req->post('role')) ? $req->post('role') : 2;
+    $userName = !is_null($req->post('user_name')) ? $req->post('user_name') : null;
+    $email = !is_null($req->post('email')) ? $req->post('email') : null;
+    $password = !is_null($req->post('password')) ? 
+      sha1( $req->post('password') . \lib\configure\Configure::get('securitySalt') ) : null;
+    $role = !is_null($req->post('role')) ? $req->post('role') : 2;
 
-  $status = \SkyLogin\Platform::register(
-    array(
-      'user_name' => $userName,
-      'email' => $email,
-      'password' => $password,
-      'role' => $role,
-      'hash_id' => sha1($userName . microtime() . mt_rand(0,1000))
-    )
-  );
+    $status = \SkyLogin\Platform::register(
+      array(
+        'user_name' => $userName,
+        'email' => $email,
+        'password' => $password,
+        'role' => $role,
+        'hash_id' => sha1($userName . microtime() . mt_rand(0,1000))
+      )
+    );
 
-  \SkyLogin\Platform::login(
-    array(
-      'login' => $userName
-      , 'password' => $password
-    ));
+    \SkyLogin\Platform::login(
+      array(
+        'login' => $userName
+        , 'password' => $password
+      ));
+  }
 }
 
 \SkyLogin\Platform::auth(function($me){
