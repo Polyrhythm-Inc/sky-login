@@ -1,17 +1,27 @@
 sky-login
 =========
 
-Sky-login is a login module library work as standalone.
+Sky-login is a login module library work as standalone.  
 
-## Requires
-* php5.3.0(later)
-* phpunit
+## Release Notes
+Sep 06 2013 - alpha release.
+
+
+## System Required Softwares
+* php (must 5.3.0 or later)
+* PDO Mysql module
+* mysql (recommend 5.5 or later)
+
+*If you want to run tests, You have to install phpunit.
+https://github.com/sebastianbergmann/phpunit/
 
 ## Installation
+
+<b>!! Before enter commands written in bellow, You have to create database for Sky-login module.</b>
 <pre>
 $ git clone git@github.com:noppoMan/sky-login.git
 $ cd sky-login
-$ bin/migrate
+$ bin/sl migrate -c username:password@localhost[:port]/dbname
 </pre>
 
 ## Usage
@@ -81,4 +91,15 @@ if($req->isPost()
     }
 
 });
+
 </pre>
+
+## Run Test
+<pre>
+$ cd sky-login
+$ phpunit test/
+</pre>
+
+
+## License
+Hogehoge inc.
