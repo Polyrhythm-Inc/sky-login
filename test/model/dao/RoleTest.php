@@ -12,18 +12,19 @@ use lib\model\dao\Role;
 class RoleTest extends \PHPUnit_Framework_TestCase {
 
 
-  protected function setUp(){
-    $table = Role::table();
-    Role::connection()->query('TRUNCATE ' . $table->table);
-  }
+  protected function setUp(){}
 
   public function testGetById(){
 
     //正常系
     {
-      $json = (array)\lib\util\Parser::json(SKYLOGIN_FIXTURES_PATH . '/Role.json');
-      $res = Role::create($json);
-      $this->assertNotNull(Role::getById($res->id));
+
+      $this->assertEquals(Role::getById(1),
+        array(
+          "id"=> 1,
+          "name"=> "admin",
+          "name_ja" => "管理者"
+      ));
     }
 
 
@@ -38,10 +39,7 @@ class RoleTest extends \PHPUnit_Framework_TestCase {
   }
 
 
-  protected function tearDown(){
-    $table = Role::table();
-    Role::connection()->query('TRUNCATE ' . $table->table);
-  }
+  protected function tearDown(){}
 
 
 } 

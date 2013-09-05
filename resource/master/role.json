@@ -1,17 +1,21 @@
 {
   "1":{
+    "id":1,
     "name": "admin",
     "name_ja": "管理者"
   },
   "2":{
+    "id":2,
     "name": "role_a",
     "name_ja": "機能A"
   },
   "3":{
+    "id":3,
     "name": "role_b",
     "name_ja": "機能B"
   },
   "4":{
+    "id":4,
     "name": "no_grant",
     "name_ja": "ユーザー"
   }  

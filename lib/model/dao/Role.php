@@ -6,7 +6,7 @@ use lib\exception\UnexpectedParameterException;
 use lib\util\Validator;
 use lib\util\Parser;
 
-class Role extends \lib\model\dao\BaseDao { 
+class Role { 
 
   private static $roles = null;
 
@@ -20,6 +20,6 @@ class Role extends \lib\model\dao\BaseDao {
     if(empty($id)){
       throw new UnexpectedParameterException;
     }
-    return self::$roles->$id;
+    return (array)self::$roles->$id;
   }
 }

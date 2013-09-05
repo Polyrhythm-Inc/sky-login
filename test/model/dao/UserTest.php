@@ -35,8 +35,6 @@ class UserTest extends \PHPUnit_Framework_TestCase {
         "email" => "test@sample.com",
         "password" => "d0be2dc421be4fcd0172e5afceea3970e2f3d940",
         "image_url" => null,
-        "current_platform_id" => 1,
-        "role_id" => 0,
         "created" => null,
         "modified" => null
       );
@@ -92,8 +90,6 @@ class UserTest extends \PHPUnit_Framework_TestCase {
         "email" => "test@sample.com",
         "password" => "d0be2dc421be4fcd0172e5afceea3970e2f3d940",
         "image_url" => null,
-        "current_platform_id" => 1,
-        "role_id" => 0,
         "created" => null,
         "modified" => null
       );
@@ -147,8 +143,6 @@ class UserTest extends \PHPUnit_Framework_TestCase {
         "email" => "test@sample.com",
         "password" => "d0be2dc421be4fcd0172e5afceea3970e2f3d940",
         "image_url" => null,
-        "current_platform_id" => 1,
-        "role_id" => 0,
         "created" => null,
         "modified" => null
       );
@@ -197,7 +191,6 @@ class UserTest extends \PHPUnit_Framework_TestCase {
         'user_id_relation_sequence_id' => 2,
         'email' => 'test2@sample.com',
         'password' => 'mypassword',
-        'current_platform_id' => 1,
       );
 
       $res = User::add($testData);

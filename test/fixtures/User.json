@@ -4,7 +4,5 @@
   "name": "test_user",
   "display_name":"日本語入力OK",
   "email": "test@sample.com",
-  "password": "d0be2dc421be4fcd0172e5afceea3970e2f3d940",
-  "current_platform_id": 1,
-  "role_id": 0
+  "password": "d0be2dc421be4fcd0172e5afceea3970e2f3d940"
 }
