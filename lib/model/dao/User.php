@@ -32,7 +32,6 @@ class User extends \lib\model\dao\BaseDao {
         'user_id_relation_sequence_id',
         'email',
         'password',
-        'role_id'
       )
     );
 

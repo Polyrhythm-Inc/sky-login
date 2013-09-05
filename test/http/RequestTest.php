@@ -3,7 +3,7 @@
 namespace test\http;
 
 require_once dirname(__FILE__) . '/../boot.php';
-require_once LIB_PATH . '/http/Request.php';
+require_once SKYLOGIN_LIB_PATH . '/http/Request.php';
 
 use lib\http\Request;
 

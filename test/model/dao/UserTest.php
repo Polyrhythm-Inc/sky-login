@@ -3,7 +3,7 @@
 namespace test\model\dao;
 
 require_once dirname(__FILE__) . '/../../boot.php';
-require_once LIB_PATH . '/model/dao/User.php';
+require_once SKYLOGIN_LIB_PATH . '/model/dao/User.php';
 
 use lib\model\dao\User;
 use lib\exception\UnexpectedParameterException;
@@ -15,7 +15,7 @@ class UserTest extends \PHPUnit_Framework_TestCase {
 
   protected function setUp(){
     User::connection()->query('TRUNCATE ' . $this->tableName);
-    $json = parseJson(FIXTURES_PATH . '/User.json');
+    $json = (array)\lib\util\Parser::json(SKYLOGIN_FIXTURES_PATH . '/User.json');
     User::create($json);
   }
 
@@ -198,7 +198,6 @@ class UserTest extends \PHPUnit_Framework_TestCase {
         'email' => 'test2@sample.com',
         'password' => 'mypassword',
         'current_platform_id' => 1,
-        'role_id' => 0
       );
 
       $res = User::add($testData);

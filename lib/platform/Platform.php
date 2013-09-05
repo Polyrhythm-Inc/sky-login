@@ -16,8 +16,6 @@ class Platform {
 
     require_once dirname(__FILE__) . '/../boot.php';
 
-    //Configure::parseJson('platforms', dirname(__FILE__) . '/resource/platform.json');
-
     if($platformName === null){ return; }
 
     $className = self::getPlatformClassName($platformName);

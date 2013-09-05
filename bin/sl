@@ -1,0 +1,29 @@
+#!/usr/bin/php
+<?php
+
+define('ROOT', str_replace('/bin', '', dirname(__FILE__)));
+
+$commands = array(
+  'migrate' => array(
+      array('-e', '--environemnt', '[run environemnt. ex: develop|staging|production]')
+    )
+);
+$cmds = array_keys($commands);
+
+$cmd = isset($argv[1]) ? $argv[1] : null;
+
+if(!in_array($cmd, $cmds)){
+
+  echo "sl commands are:\n\n";
+  foreach($commands as $c => $o){
+    $ops = '   options: ';
+    foreach($o as $key => $val){
+      $ops .= implode(', ', $val) . "\n";
+    }
+    echo '  ' . $c;
+    echo $ops;
+    echo "\n";
+  }
+  exit(1);
+}
+

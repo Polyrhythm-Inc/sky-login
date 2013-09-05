@@ -1,17 +1,14 @@
 <?php
 
 //module dependencies
-require_once dirname(__FILE__) . '/../vendors/php-activerecord/ActiveRecord.php';
-require_once dirname(__FILE__) . '/../lib/configure/Datastore.php';
-require_once dirname(__FILE__) . '/../lib/exception/UnexpectedParameterException.php';
-require_once dirname(__FILE__) . '/../lib/util/Utility.php';
+require_once dirname(__FILE__)    . '/../common.php';
+require_once SKYLOGIN_VENDOR_PATH . '/php-activerecord/ActiveRecord.php';
+require_once SKYLOGIN_LIB_PATH    . '/configure/Datastore.php';
+require_once SKYLOGIN_LIB_PATH    . '/exception/UnexpectedParameterException.php';
+require_once SKYLOGIN_LIB_PATH    . '/util/Utility.php';
+require_once SKYLOGIN_LIB_PATH    . '/util/Parser.php';
 
-use lib\configure\Datastore;
-
-define('LIB_PATH', dirname(__FILE__) . '/../lib');
-define('FIXTURES_PATH', dirname(__FILE__) . '/fixtures');
-
-Datastore::add('default', array(
+\lib\configure\Datastore::add('default', array(
     'host' => 'localhost',
     'port' => null,
     'user' => 'root',
@@ -20,7 +17,7 @@ Datastore::add('default', array(
   )
 );
 
-$conf = Datastore::get('default');
+$conf = \lib\configure\Datastore::get('default');
 
 \ActiveRecord\Config::initialize(function($cfg) use ($conf)
 {
@@ -28,8 +25,3 @@ $conf = Datastore::get('default');
    $cfg->set_connections(array(
        'development' => "mysql://{$conf['user']}:{$conf['passwd']}@{$conf['host']}/{$conf['db']}"));
 });
-
-
-function parseJson($path){
-  return (array)json_decode(file_get_contents($path));
-}

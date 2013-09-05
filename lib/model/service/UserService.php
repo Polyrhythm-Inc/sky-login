@@ -47,7 +47,6 @@ class UserService {
         'display_name' => $userName,
         'email' => $email,
         'password' => $password,
-        'role_id' => $roleId
       );
 
       $res = User::add($data);

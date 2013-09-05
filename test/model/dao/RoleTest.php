@@ -3,7 +3,7 @@
 namespace test\model\dao;
 
 require_once dirname(__FILE__) . '/../../boot.php';
-require_once LIB_PATH . '/model/dao/Role.php';
+require_once SKYLOGIN_LIB_PATH . '/model/dao/Role.php';
 
 use lib\exception\UnexpectedParameterException;
 use lib\util\Utility;
@@ -21,7 +21,7 @@ class RoleTest extends \PHPUnit_Framework_TestCase {
 
     //正常系
     {
-      $json = parseJson(FIXTURES_PATH . '/Role.json');
+      $json = (array)\lib\util\Parser::json(SKYLOGIN_FIXTURES_PATH . '/Role.json');
       $res = Role::create($json);
       $this->assertNotNull(Role::getById($res->id));
     }

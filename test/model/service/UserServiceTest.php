@@ -3,13 +3,15 @@
 namespace test\model\service;
 
 require_once dirname(__FILE__) . '/../../boot.php';
-require_once LIB_PATH . '/model/dao/User.php';
-require_once LIB_PATH . '/model/dao/UserIdRelation.php';
-require_once LIB_PATH . '/model/service/UserService.php';
+require_once SKYLOGIN_LIB_PATH . '/model/dao/User.php';
+require_once SKYLOGIN_LIB_PATH . '/model/dao/UserIdRelation.php';
+require_once SKYLOGIN_LIB_PATH . '/model/dao/UserPlatformEachAuthentication.php';
+require_once SKYLOGIN_LIB_PATH . '/model/service/UserService.php';
 
 use lib\model\service\UserService;
 use lib\model\dao\User;
 use lib\model\dao\UserIdRelation;
+use lib\model\dao\UserPlatformEachAuthentication;
 use lib\exception\UnexpectedParameterException;
 use lib\util\Utility;
 
@@ -18,6 +20,7 @@ class UserServiceTest extends \PHPUnit_Framework_TestCase {
   protected function setUp(){
     User::connection()->query('TRUNCATE users');
     UserIdRelation::connection()->query('TRUNCATE user_id_relations');
+    UserPlatformEachAuthentication::connection()->query('TRUNCATE user_platform_each_authentications');
   }
 
   public function testRegister(){
@@ -82,6 +85,7 @@ class UserServiceTest extends \PHPUnit_Framework_TestCase {
   protected function tearDown(){
     User::connection()->query('TRUNCATE users');
     UserIdRelation::connection()->query('TRUNCATE user_id_relations');
+    UserPlatformEachAuthentication::connection()->query('TRUNCATE user_platform_each_authentications');
   }
 
 

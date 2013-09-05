@@ -2,16 +2,9 @@
 
 namespace lib\configure;
 
-class Configure {  
-//extends \lib\configure\BaseConfigure {
+class Configure {
   
   protected static $configMap = array();
-
-  public static function parseJson($key, $path){
-    $s = file_get_contents($path);
-    $j = json_decode($s);
-    self::$configMap[$key] = $j;
-  }
 
   public static function write($key, $value){
     self::$configMap[$key] = $value;

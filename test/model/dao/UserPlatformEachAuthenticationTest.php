@@ -3,7 +3,7 @@
 namespace test\model\dao;
 
 require_once dirname(__FILE__) . '/../../boot.php';
-require_once LIB_PATH . '/model/dao/UserPlatformEachAuthentication.php';
+require_once SKYLOGIN_LIB_PATH . '/model/dao/UserPlatformEachAuthentication.php';
 
 use lib\exception\UnexpectedParameterException;
 use lib\util\Utility;
