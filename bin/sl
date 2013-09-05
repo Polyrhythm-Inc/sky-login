@@ -29,7 +29,11 @@ if(!in_array($cmd, $cmds)){
   foreach($commands as $c => $o){
     $ops = ' [options]'."\n";
     foreach($o as $key => $val){
-      $ops .= '    '. implode(', ', $val) . "\n";
+      if(!is_array($val)) continue;
+      foreach($val as $k => $v){
+        unset($v[3]);
+        $ops .= '    '. implode(', ', $v) . "\n";
+      }
     }
     echo '  ' . $c;
     echo $ops;
@@ -73,6 +77,11 @@ foreach($args as $key => $val){
 $db = null;
 
 if($commands[$cmd]['useDB']){
+
+  if(!isset($args['-c'])){
+    echo '[-c username:password@host[:port]/dbname] is required this command.';
+    exit(0);
+  }
 
   $getVal = function($index, $arr){
     return $arr[$index];
