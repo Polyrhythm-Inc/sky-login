@@ -5,20 +5,31 @@ define('ROOT', str_replace('/bin', '', dirname(__FILE__)));
 
 $commands = array(
   'migrate' => array(
-      array('-e', '--environemnt', '[run environemnt. ex: develop|staging|production]')
-    )
+    'options' => array(
+//        array('-e', '--environemnt', '[run environemnt. ex: develop|staging|production]'),
+        array('-c', '--connection', ' ex. username:password@host[:port]/dbname', 'required')
+      ),
+    'useDB' => true
+    ),
+  'runtest' => array(
+    'options' => array(
+//        array('-e', '--environemnt', '[run environemnt. ex: develop|staging|production]'),
+        array('-c', '--connection', ' ex. username:password@host[:port]/dbname', 'required')
+      ),
+    'useDB' => true
+    ),
 );
-$cmds = array_keys($commands);
 
+$cmds = array_keys($commands);
 $cmd = isset($argv[1]) ? $argv[1] : null;
 
 if(!in_array($cmd, $cmds)){
 
   echo "sl commands are:\n\n";
   foreach($commands as $c => $o){
-    $ops = '   options: ';
+    $ops = ' [options]'."\n";
     foreach($o as $key => $val){
-      $ops .= implode(', ', $val) . "\n";
+      $ops .= '    '. implode(', ', $val) . "\n";
     }
     echo '  ' . $c;
     echo $ops;
@@ -27,3 +38,70 @@ if(!in_array($cmd, $cmds)){
   exit(1);
 }
 
+$args = array();
+foreach($argv as $key => $val){
+  
+  if($key <= 1)
+    continue;
+
+  if(substr($val, 0, 1) !== '-')
+    continue;
+
+  if(isset($argv[$key+1])){
+    $args[$val] = $argv[$key+1];
+  }else{
+    echo 'Please enter the [' . $val . '] option value';
+    exit(1);
+  }
+
+}
+
+
+$options = array();
+foreach($commands[$cmd]['options'] as $key => $val){
+  $options[] = $val[0];
+  $options[] = $val[1];
+}
+
+foreach($args as $key => $val){
+  if(!in_array($key, $options)){
+    echo $cmd . ' command does not support option: ' . $key;
+    exit(1);
+  }
+}
+
+$db = null;
+
+if($commands[$cmd]['useDB']){
+
+  $getVal = function($index, $arr){
+    return $arr[$index];
+  };
+
+  $u = $getVal(0, explode(':', $getVal(0, explode('@', $args['-c']))));
+  $p = $getVal(1, explode(':', $getVal(0, explode('@', $args['-c']))));
+  $h = $getVal(0, explode('/', $getVal(1, explode('@', $args['-c']))));
+  $d = $getVal(1, explode('/', $getVal(1, explode('@', $args['-c']))));
+
+  $db = new PDO("mysql:host={$h}; dbname={$d}", $u, $p);
+  if($db){
+    echo 'Mysql client successfully connected.' . "\n\n";
+  }
+
+}
+
+if($cmd == 'migrate'){
+
+  $sql = file_get_contents(ROOT . '/resource/ddl.sql');
+
+  echo 'migration start.........'. "\n\n";
+
+  $drop = 'DROP DATABASE IF EXISTS ' . $d . ';';
+  $create = 'CREATE DATABASE ' . $d . ' charset=utf8;';
+  $use = 'USE ' . $d . ';';
+  
+  $db->query($drop . $create . $use . $sql);
+
+  echo 'migration end.';
+
+}
