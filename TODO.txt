@@ -1,2 +1,12 @@
-user_id_relationsにbigintキャストした後のレコードを入れる
-以後はこれをセレクトするように変更
+・core.pphに設定した設定項目を参照するようにコードを変更する
+・DB設定を選ぶメソッドを追加する
+
+ex.
+
+Datastore::add('development', ....);
+Datastore::add('staging', ....);
+Datastore::add('production', ....);
+
+\Skyadmin\Platform::switchConnection('development');
+
+的な

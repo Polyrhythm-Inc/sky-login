@@ -13,9 +13,9 @@ class Platform {
   private function __construct(){}
 
   public static function initialize($platformName = null){
-
-    require_once dirname(__FILE__) . '/../boot.php';
-
+    
+    __load_platform_initialize_files();
+    
     if($platformName === null){ return; }
 
     $className = self::getPlatformClassName($platformName);
