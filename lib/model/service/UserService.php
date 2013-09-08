@@ -4,7 +4,7 @@ namespace lib\model\service;
 
 use lib\model\dao\User;
 use lib\model\dao\UserIdRelation;
-use lib\model\dao\UserPlatformEachAuthentication;
+use lib\model\dao\UserEachPlatformAuthentication;
 use lib\util\Utility;
 use lib\util\Validator;
 use lib\configure\Configure;
@@ -65,10 +65,14 @@ class UserService {
         'user_id' => $res->id,
         'platform_id' => $params['platform_id'],
       );
-        
+
       if(isset($params['platform_user_id'])){
         $data['platform_user_id'] = $params['platform_user_id'];
       }
+
+      if(isset($params['device_id'])){
+        $data['device_id'] = $params['device_id'];
+      }      
 
       if(isset($params['auth_token'])){
         $data['auth_token'] = $params['auth_token']; 
@@ -78,7 +82,7 @@ class UserService {
         $data['expires'] = $params['expires'];
       }
 
-      $res = UserPlatformEachAuthentication::add($data);
+      $res = UserEachPlatformAuthentication::add($data);
       if(empty($res)){
         throw new Exception('User registration was failed.');
       }

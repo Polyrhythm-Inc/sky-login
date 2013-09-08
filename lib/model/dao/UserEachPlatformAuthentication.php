@@ -5,7 +5,7 @@ namespace lib\model\dao;
 use lib\exception\UnexpectedParameterException;
 use lib\util\Validator;
 
-class UserPlatformEachAuthentication extends \lib\model\dao\BaseDao { 
+class UserEachPlatformAuthentication extends \lib\model\dao\BaseDao { 
 
   public static function getByPlatformIdAndAuthToken($pid, $token){
     

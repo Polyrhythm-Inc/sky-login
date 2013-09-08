@@ -3,18 +3,18 @@
 namespace test\model\dao;
 
 require_once dirname(__FILE__) . '/../../boot.php';
-require_once SKYLOGIN_LIB_PATH . '/model/dao/UserPlatformEachAuthentication.php';
+require_once SKYLOGIN_LIB_PATH . '/model/dao/UserEachPlatformAuthentication.php';
 
 use lib\exception\UnexpectedParameterException;
 use lib\util\Utility;
-use lib\model\dao\UserPlatformEachAuthentication;
+use lib\model\dao\UserEachPlatformAuthentication;
 
-class UserPlatformEachAuthenticationTest extends \PHPUnit_Framework_TestCase {
+class UserEachPlatformAuthenticationTest extends \PHPUnit_Framework_TestCase {
 
 
   protected function setUp(){
-    $table = UserPlatformEachAuthentication::table();
-    UserPlatformEachAuthentication::connection()->query('TRUNCATE ' . $table->table);
+    $table = UserEachPlatformAuthentication::table();
+    UserEachPlatformAuthentication::connection()->query('TRUNCATE ' . $table->table);
   }
 
   public function testAdd(){
@@ -29,8 +29,8 @@ class UserPlatformEachAuthenticationTest extends \PHPUnit_Framework_TestCase {
         'expires' => date('Y-m-d H:i:s', time() + 86400)
       );
 
-      $res = UserPlatformEachAuthentication::add($testData);
-      $this->assertNotNull(UserPlatformEachAuthentication::first($res->id));
+      $res = UserEachPlatformAuthentication::add($testData);
+      $this->assertNotNull(UserEachPlatformAuthentication::first($res->id));
     }
 
 
@@ -39,7 +39,7 @@ class UserPlatformEachAuthenticationTest extends \PHPUnit_Framework_TestCase {
       $testData = null;
 
       try{
-        $res = UserPlatformEachAuthentication::add($testData);
+        $res = UserEachPlatformAuthentication::add($testData);
       }catch(\Exception $e){
         $this->assertEquals($e, new \lib\exception\UnexpectedParameterException);
       }
@@ -68,6 +68,7 @@ class UserPlatformEachAuthenticationTest extends \PHPUnit_Framework_TestCase {
         "user_id" => 1,
         "platform_id" => $pid,
         "platform_user_id" => 2,
+        "device_id" => null,
         "auth_token" => $token,
         "expires" => "1988-07-22T00:00:00+0900",
         "created" => "1988-07-22T00:00:00+0900",
@@ -76,8 +77,8 @@ class UserPlatformEachAuthenticationTest extends \PHPUnit_Framework_TestCase {
 
 
 
-      UserPlatformEachAuthentication::add($testData);
-      $res = UserPlatformEachAuthentication::getByPlatformIdAndAuthToken($pid, $token);
+      UserEachPlatformAuthentication::add($testData);
+      $res = UserEachPlatformAuthentication::getByPlatformIdAndAuthToken($pid, $token);
       $this->assertEquals($res->to_array(), $expected);
     }
 
@@ -96,10 +97,10 @@ class UserPlatformEachAuthenticationTest extends \PHPUnit_Framework_TestCase {
         'modified' => '1988-07-22 00:00:00',
       );
 
-      UserPlatformEachAuthentication::add($testData);
+      UserEachPlatformAuthentication::add($testData);
 
       try{
-        $res = UserPlatformEachAuthentication::getByPlatformIdAndAuthToken($pid, $token);
+        $res = UserEachPlatformAuthentication::getByPlatformIdAndAuthToken($pid, $token);
       }catch(\Exception $e){
         $this->assertEquals($e, new \lib\exception\UnexpectedParameterException);
       }
@@ -120,14 +121,14 @@ class UserPlatformEachAuthenticationTest extends \PHPUnit_Framework_TestCase {
         'modified' => '1988-07-22 00:00:00',
       );
 
-      UserPlatformEachAuthentication::add($testData);
+      UserEachPlatformAuthentication::add($testData);
 
       $params = array(
         'expires' => '1988-07-22 00:00:00',
         'auth_token' => sha1('hogehogehogehoge')
       );
 
-      $res = UserPlatformEachAuthentication::updateByPlatformIdAndUserId($params, 1, 1);
+      $res = UserEachPlatformAuthentication::updateByPlatformIdAndUserId($params, 1, 1);
       $this->assertTrue($res);
     }
 
@@ -144,12 +145,12 @@ class UserPlatformEachAuthenticationTest extends \PHPUnit_Framework_TestCase {
         'modified' => '1988-07-22 00:00:00',
       );
 
-      UserPlatformEachAuthentication::add($testData);
+      UserEachPlatformAuthentication::add($testData);
 
       $params = null;
 
       try{
-        $res = UserPlatformEachAuthentication::updateByPlatformIdAndUserId($params, 1, 1);
+        $res = UserEachPlatformAuthentication::updateByPlatformIdAndUserId($params, 1, 1);
       }catch(\Exception $e){
         $this->assertEquals($e, new \lib\exception\UnexpectedParameterException);
       }
@@ -160,8 +161,8 @@ class UserPlatformEachAuthenticationTest extends \PHPUnit_Framework_TestCase {
 
 
   protected function tearDown(){
-    $table = UserPlatformEachAuthentication::table();
-    UserPlatformEachAuthentication::connection()->query('TRUNCATE ' . $table->table);
+    $table = UserEachPlatformAuthentication::table();
+    UserEachPlatformAuthentication::connection()->query('TRUNCATE ' . $table->table);
   }
 
 

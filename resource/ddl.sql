@@ -34,10 +34,10 @@ CREATE TABLE IF NOT EXISTS `user_id_relations` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_platform_each_authentications`
+-- Table structure for table `user_each_platform_authentications`
 --
 
-CREATE TABLE IF NOT EXISTS `user_platform_each_authentications` (
+CREATE TABLE IF NOT EXISTS `user_each_platform_authentications` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) DEFAULT NULL,
   `platform_id` int(11) DEFAULT NULL,
