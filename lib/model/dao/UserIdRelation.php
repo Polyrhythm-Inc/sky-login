@@ -1,10 +1,10 @@
 <?php
 
-namespace lib\model\dao;
+namespace SkyLogin\lib\model\dao;
 
-use lib\exception\UnexpectedParameterException;
+use SkyLogin\lib\exception\UnexpectedParameterException;
 
-class UserIdRelation extends \lib\model\dao\BaseDao { 
+class UserIdRelation extends \SkyLogin\lib\model\dao\BaseDao { 
 
   public static function add($hashId){
 

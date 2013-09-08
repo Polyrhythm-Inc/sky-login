@@ -1,11 +1,11 @@
 <?php
 
-namespace lib\model\dao;
+namespace SkyLogin\lib\model\dao;
 
-use lib\exception\UnexpectedParameterException;
-use lib\util\Validator;
+use SkyLogin\lib\exception\UnexpectedParameterException;
+use SkyLogin\lib\util\Validator;
 
-class UserEachPlatformAuthentication extends \lib\model\dao\BaseDao { 
+class UserEachPlatformAuthentication extends \SkyLogin\lib\model\dao\BaseDao { 
 
   public static function getByPlatformIdAndAuthToken($pid, $token){
     

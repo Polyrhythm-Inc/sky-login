@@ -1,6 +1,6 @@
 <?php
 
-namespace lib\platform\provider;
+namespace SkyLogin\lib\platform\provider;
 
 interface AgentProvider {
 

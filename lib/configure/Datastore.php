@@ -1,6 +1,6 @@
 <?php
 
-namespace lib\configure;
+namespace SkyLogin\lib\configure;
 
 class Datastore {
   

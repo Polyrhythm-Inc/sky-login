@@ -1,13 +1,13 @@
 <?php
 
-namespace lib\model\service;
+namespace SkyLogin\lib\model\service;
 
-use lib\model\dao\User;
-use lib\model\dao\UserIdRelation;
-use lib\model\dao\UserEachPlatformAuthentication;
-use lib\util\Utility;
-use lib\util\Validator;
-use lib\configure\Configure;
+use SkyLogin\lib\model\dao\User;
+use SkyLogin\lib\model\dao\UserIdRelation;
+use SkyLogin\lib\model\dao\UserEachPlatformAuthentication;
+use SkyLogin\lib\util\Utility;
+use SkyLogin\lib\util\Validator;
+use SkyLogin\lib\configure\Configure;
 
 class UserService {
 
@@ -56,13 +56,13 @@ class UserService {
         'password' => $password,
       );
 
-      $res = User::add($data);
-      if(empty($res)){
+      $user = User::add($data);
+      if(empty($user)){
         throw new Exception('User registration was failed.');
       }
 
       $data = array(
-        'user_id' => $res->id,
+        'user_id' => $user->id,
         'platform_id' => $params['platform_id'],
       );
 
@@ -89,7 +89,7 @@ class UserService {
 
       $c->commit();
 
-      return User::first($res->id);
+      return User::first($user->id);
 
     }catch(\Exception $e){
       

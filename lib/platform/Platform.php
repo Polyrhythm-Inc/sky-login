@@ -1,6 +1,6 @@
 <?php
 
-namespace lib\platform;
+namespace SkyLogin\lib\platform;
 
 class Platform {
 
@@ -45,7 +45,7 @@ class Platform {
   }
 
   private static function getPlatformClassName($platformName){
-    $className = "\\lib\\platform\\agent\\" . $platformName;
+    $className = "\\SkyLogin\\lib\\platform\\agent\\" . $platformName;
     return $className;
   }
 

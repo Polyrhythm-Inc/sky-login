@@ -4,13 +4,15 @@ include dirname(__FILE__) . '/base_setting.php';
 
 $req = new \SkyLogin\Request();
 
+$stat = true;
+
 if($req->isPost()) {
   if($req->post('user_name') !== "" && $req->post('password') !== "" && $req->post('email') !== ""){
 
     $userName = !is_null($req->post('user_name')) ? $req->post('user_name') : null;
     $email = !is_null($req->post('email')) ? $req->post('email') : null;
     $password = !is_null($req->post('password')) ? 
-      sha1( $req->post('password') . \lib\configure\Configure::get('securitySalt') ) : null;
+      sha1( $req->post('password') . \SkyLogin\lib\configure\Configure::get('securitySalt') ) : null;
     $role = !is_null($req->post('role')) ? $req->post('role') : 2;
 
     $status = \SkyLogin\Platform::register(
@@ -23,11 +25,15 @@ if($req->isPost()) {
       )
     );
 
-    \SkyLogin\Platform::login(
-      array(
-        'login' => $userName
-        , 'password' => $password
-      ));
+    $stat = $status->status;
+
+    if($stat){
+      \SkyLogin\Platform::login(
+        array(
+          'login' => $userName
+          , 'password' => $password
+        ));
+    }
   }
 }
 
@@ -85,6 +91,9 @@ if($req->isPost()) {
 
       <form class="form-signin" method="POST">
         <h2 class="form-signin-heading">User registration</h2>
+        <?php if(!$stat):?>
+          <p style="color:#ff0000;">ユーザーの登録に失敗しました。<br>既に登録されているユーザーか、不正な値が送信されました。</p>
+        <?php endif;?>
         <input type="text" name="user_name" class="input-block-level" placeholder="User name">
         <input type="text" name="email" class="input-block-level" placeholder="Email address">
         <input type="password" name="password" class="input-block-level" placeholder="Password">

@@ -1,6 +1,6 @@
 <?php
 
-namespace lib\util;
+namespace SkyLogin\lib\util;
 
 class Parser {
 

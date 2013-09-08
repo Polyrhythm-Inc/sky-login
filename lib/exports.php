@@ -2,7 +2,7 @@
 
 namespace SkyLogin;
 
-class Request   extends  \lib\http\Request {}
-class Platform  extends  \lib\platform\Platform {}
-class Datastore extends  \lib\configure\Datastore {}
-class Configure extends  \lib\configure\Configure {}
+class Request   extends  \SkyLogin\lib\http\Request {}
+class Platform  extends  \SkyLogin\lib\platform\Platform {}
+class Datastore extends  \SkyLogin\lib\configure\Datastore {}
+class Configure extends  \SkyLogin\lib\configure\Configure {}

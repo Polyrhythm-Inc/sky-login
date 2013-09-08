@@ -1,6 +1,6 @@
 <?php
 
-namespace lib\exception;
+namespace SkyLogin\lib\exception;
 
 class UnexpectedParameterException extends \Exception {
   

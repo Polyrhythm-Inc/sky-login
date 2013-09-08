@@ -1,11 +1,11 @@
 <?php
 
-namespace test\http;
+namespace SkyLogin\test\http;
 
 require_once dirname(__FILE__) . '/../boot.php';
 require_once SKYLOGIN_LIB_PATH . '/http/Request.php';
 
-use lib\http\Request;
+use SkyLogin\lib\http\Request;
 
 class RequestTest extends \PHPUnit_Framework_TestCase {
 

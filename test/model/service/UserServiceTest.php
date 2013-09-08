@@ -1,6 +1,6 @@
 <?php
 
-namespace test\model\service;
+namespace SkyLogin\test\model\service;
 
 require_once dirname(__FILE__) . '/../../boot.php';
 require_once SKYLOGIN_LIB_PATH . '/model/dao/User.php';
@@ -8,12 +8,12 @@ require_once SKYLOGIN_LIB_PATH . '/model/dao/UserIdRelation.php';
 require_once SKYLOGIN_LIB_PATH . '/model/dao/UserEachPlatformAuthentication.php';
 require_once SKYLOGIN_LIB_PATH . '/model/service/UserService.php';
 
-use lib\model\service\UserService;
-use lib\model\dao\User;
-use lib\model\dao\UserIdRelation;
-use lib\model\dao\UserEachPlatformAuthentication;
-use lib\exception\UnexpectedParameterException;
-use lib\util\Utility;
+use SkyLogin\lib\model\service\UserService;
+use SkyLogin\lib\model\dao\User;
+use SkyLogin\lib\model\dao\UserIdRelation;
+use SkyLogin\lib\model\dao\UserEachPlatformAuthentication;
+use SkyLogin\lib\exception\UnexpectedParameterException;
+use SkyLogin\lib\util\Utility;
 
 class UserServiceTest extends \PHPUnit_Framework_TestCase {
 

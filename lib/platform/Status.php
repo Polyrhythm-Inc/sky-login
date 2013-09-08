@@ -1,6 +1,6 @@
 <?php
 
-namespace lib\platform;
+namespace SkyLogin\lib\platform;
 
 class Status {
 

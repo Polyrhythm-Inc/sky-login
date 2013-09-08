@@ -1,8 +1,8 @@
 <?php
 
-namespace lib\platform\agent;
+namespace SkyLogin\lib\platform\agent;
 
-use lib\model\User;
+use SkyLogin\lib\model\User;
 
 abstract class BaseAgent {
   

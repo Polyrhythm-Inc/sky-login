@@ -1,6 +1,6 @@
 <?php
 
-use lib\configure\Datastore;
+use SkyLogin\lib\configure\Datastore;
 
 $conf = Datastore::get(Datastore::$currentUsing);
 

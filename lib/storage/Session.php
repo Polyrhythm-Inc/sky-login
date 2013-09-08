@@ -1,6 +1,6 @@
 <?php
 
-namespace lib\storage;
+namespace SkyLogin\lib\storage;
 
 class Session {
 

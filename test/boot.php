@@ -3,12 +3,13 @@
 //module dependencies
 require_once dirname(__FILE__)    . '/../common.php';
 require_once SKYLOGIN_VENDOR_PATH . '/php-activerecord/ActiveRecord.php';
-require_once SKYLOGIN_LIB_PATH    . '/configure/Datastore.php';
-require_once SKYLOGIN_LIB_PATH    . '/exception/UnexpectedParameterException.php';
-require_once SKYLOGIN_LIB_PATH    . '/util/Utility.php';
-require_once SKYLOGIN_LIB_PATH    . '/util/Parser.php';
+require_once SKYLOGIN_VENDOR_PATH . '/SplClassLoader.php';
 
-\lib\configure\Datastore::add('default', array(
+//auto loader
+$classLoader = new \SplClassLoader(null, SKYLOGIN_ROOT);
+$classLoader->register();
+
+\SkyLogin\lib\configure\Datastore::add('default', array(
     'host' => 'localhost',
     'port' => null,
     'user' => 'root',
@@ -17,7 +18,7 @@ require_once SKYLOGIN_LIB_PATH    . '/util/Parser.php';
   )
 );
 
-$conf = \lib\configure\Datastore::get('default');
+$conf = \SkyLogin\lib\configure\Datastore::get('default');
 
 \ActiveRecord\Config::initialize(function($cfg) use ($conf)
 {

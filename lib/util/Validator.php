@@ -1,8 +1,8 @@
 <?php
 
-namespace lib\util;
+namespace SkyLogin\lib\util;
 
-use lib\exception\UnexpectedParameterException;
+use SkyLogin\lib\exception\UnexpectedParameterException;
 
 class Validator {
 

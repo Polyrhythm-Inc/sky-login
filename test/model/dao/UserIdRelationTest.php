@@ -1,13 +1,13 @@
 <?php
 
-namespace test\model\dao;
+namespace SkyLogin\test\model\dao;
 
 require_once dirname(__FILE__) . '/../../boot.php';
 require_once SKYLOGIN_LIB_PATH . '/model/dao/User.php';
 
-use lib\model\dao\UserIdRelation;
-use lib\exception\UnexpectedParameterException;
-use lib\util\Utility;
+use SkyLogin\lib\model\dao\UserIdRelation;
+use SkyLogin\lib\exception\UnexpectedParameterException;
+use SkyLogin\lib\util\Utility;
 
 class UserIdRelationTest extends \PHPUnit_Framework_TestCase {
 

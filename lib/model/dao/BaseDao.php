@@ -1,6 +1,6 @@
 <?php
 
-namespace lib\model\dao;
+namespace SkyLogin\lib\model\dao;
 
 abstract class BaseDao extends \ActiveRecord\Model{
 

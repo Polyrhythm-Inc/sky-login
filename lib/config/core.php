@@ -20,7 +20,7 @@ function __boot_loader(){
 }
 
 
-use lib\configure\Configure;
+use SkyLogin\lib\configure\Configure;
 
 /*************************************************
 *
