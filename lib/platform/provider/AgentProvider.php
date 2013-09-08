@@ -10,6 +10,8 @@ interface AgentProvider {
 
   public function auth($callback = null);
 
+  public function user($id = null);
+
   public function logout();
 
 }

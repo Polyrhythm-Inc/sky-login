@@ -37,7 +37,9 @@ Configure::write('debug', true);
 
 Configure::write('debugLogPath', null);
 
-Configure::write('usehashId', false);
+Configure::write('enableUserhashId', true);
+
+Configure::write('enableAutoLoginWithDeviceId', false);
 
 
 /*************************************************
@@ -50,7 +52,7 @@ Configure::write('usehashId', false);
 Configure::write('enableEmailAuth', true);
 
 //name authentication
-Configure::write('enableNameAuth', false);
+Configure::write('enableNameAuth', true);
 
 
 
@@ -61,7 +63,7 @@ Configure::write('enableNameAuth', false);
 *************************************************/
 
 //allow cookie authentication?
-Configure::write('enableCookieAuth', false);
+Configure::write('enableAutoLoginWithCookie', false);
 
 Configure::write('cookieAuthExpires', 86400);
 

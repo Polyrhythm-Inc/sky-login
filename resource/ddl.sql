@@ -42,13 +42,16 @@ CREATE TABLE IF NOT EXISTS `user_platform_each_authentications` (
   `user_id` bigint(20) DEFAULT NULL,
   `platform_id` int(11) DEFAULT NULL,
   `platform_user_id` varchar(255) DEFAULT NULL,
+  `device_id` varchar(255) DEFAULT NULL,
   `auth_token` varchar(64) DEFAULT NULL,
   `expires` datetime DEFAULT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `platform_id_auth_token` (`platform_id`,`auth_token`),
-  UNIQUE KEY `platform_id_and_user_id` (`platform_id`,`user_id`)
+  UNIQUE KEY `platform_id_and_user_id` (`platform_id`,`user_id`),
+  UNIQUE KEY `platform_id_platform_user_id` (`platform_id`,`platform_user_id`),
+  UNIQUE KEY `platform_id_device_id` (`platform_id`,`device_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------

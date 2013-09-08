@@ -103,6 +103,10 @@ class SessionLogin extends BaseAgent implements AgentProvider {
     }
   }
 
+  public function user($id = null){
+    return Session::get('me');
+  }
+
   public function auth($callback = null){
 
     if(Session::has('isLogin') && Session::has('me') && Session::get('isLogin')){

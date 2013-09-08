@@ -7,6 +7,7 @@ use lib\model\dao\UserIdRelation;
 use lib\model\dao\UserPlatformEachAuthentication;
 use lib\util\Utility;
 use lib\util\Validator;
+use lib\configure\Configure;
 
 class UserService {
 
@@ -35,14 +36,20 @@ class UserService {
 
       $c->transaction();
 
-      $res = UserIdRelation::add($hashId);
 
-      if(empty($res)){
-        throw new Exception('User registration was failed.');
+      $user_id_relation_sequence_id = null;
+      if(Configure::get('enableUserhashId')){
+        $res = UserIdRelation::add($hashId);
+
+        if(empty($res)){
+          throw new Exception('User registration was failed.');
+        }
+
+        $user_id_relation_sequence_id = $res['id'];
       }
 
       $data = array(
-        'user_id_relation_sequence_id' => $res['id'],
+        'user_id_relation_sequence_id' => $user_id_relation_sequence_id,
         'name' => $userName,
         'display_name' => $userName,
         'email' => $email,
