@@ -11,7 +11,6 @@ use lib\util\Utility;
 use lib\configure\Configure;
 use lib\model\service\UserService;
 use lib\http\Request;
-use lib\Consts;
 
 Session::start();
 
@@ -36,11 +35,21 @@ class SessionLogin extends BaseAgent implements AgentProvider {
 
       UserService::register($params);
 
-      return Consts::REGISTER_USER_SUCCESS;
+      return new \lib\platform\Status(
+        array(
+          'status' => true,
+          'message' => 'USER_REGISTRATION_SUCCEEDED'
+        )
+      );
 
     }else{
 
-      return Consts::REGISTER_USER_ALREADY_EXSITS;
+      return new \lib\platform\Status(
+        array(
+          'status' => false,
+          'message' => 'REGISTER_USER_ALREADY_EXSITS'
+        )
+      );
 
     }
   }
@@ -75,12 +84,22 @@ class SessionLogin extends BaseAgent implements AgentProvider {
       Session::write('isLogin', true);
       Session::write('me', $exists->to_array());
 
-      return Consts::USER_LOGIN_SUCCEEDED;
+      return new \lib\platform\Status(
+        array(
+          'status' => true,
+          'message' => 'USER_LOGIN_SUCCEEDED'
+        )
+      );
 
     }
     else
     {
-      return Consts::USER_LOGIN_FAILED;
+      return new \lib\platform\Status(
+        array(
+          'status' => false,
+          'message' => 'USER_LOGIN_FAILED'
+        )
+      );
     }
   }
 

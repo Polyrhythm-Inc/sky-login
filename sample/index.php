@@ -4,7 +4,7 @@ include dirname(__FILE__) . '/base_setting.php';
 
 $req = new \SkyLogin\Request();
 
-$status = 0;
+$stat = true;
 
 if($req->isPost()) {
   
@@ -19,6 +19,7 @@ if($req->isPost()) {
         'login' => $userName
         , 'password' => $password
     ));
+    $stat = $status->status;
   }
 }
 
@@ -78,7 +79,7 @@ if($req->isPost()) {
         <h2 class="form-signin-heading">Login</h2>
 
         <?php
-          if($status == 2){
+          if(!$stat){
             echo "<p style='color:#ff0000'>ユーザー名かパスワードが間違っています。</p>";
           }
         ?>
