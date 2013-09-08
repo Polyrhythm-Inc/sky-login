@@ -94,6 +94,46 @@ if($req->isPost()
 
 </pre>
 
+
+## Explanation of configuration value.
+<b>Writte in lib/config/core.php default.</b>
+
+#### securitySalt
+To use in order to complicate the password.
+<pre>Configure::write('securitySalt', '76hba¥^-/:[peyu64@jhk*a1');</pre>
+
+
+#### enableUserhashId
+Enable this option, if you want to use user_id which is not a auto increment value.  
+System will generate randome hashid and add it to user_id_relations table which relates users.user_id_relation_sequence_id.
+<pre>Configure::write('enableUserhashId', true);</pre>
+
+#### enableAutoLoginWithDeviceId
+Can auto login, when device_id and platform_id(ios or android) are transmited from client.
+<pre>Configure::write('enableAutoLoginWithDeviceId', false);</pre>
+
+#### enableEmailAuth
+Enable email based authentication
+<pre>Configure::write('enableEmailAuth', true);</pre>
+
+#### enableNameAuth
+Enable name based authentication
+<pre>Configure::write('enableNameAuth', true);</pre>
+
+##### additianla info
+If both of enableEmailAuth and enableNameAuth are 'true', You can login either email or user_name.
+
+#### enableAutoLoginWithCookie
+Can auto login, if cookie values for skylogin are transmited from client and they have verify value.
+<pre>Configure::write('enableAutoLoginWithCookie', false);</pre>
+
+#### cookieAuthExpires
+<pre>Configure::write('cookieAuthExpires', 86400);</pre>
+
+#### cookieName
+<pre>Configure::write('cookieName', '__sltk__');</pre>
+
+
 ## Run Test
 <pre>
 $ cd sky-login
