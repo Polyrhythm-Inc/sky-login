@@ -70,10 +70,6 @@ class UserService {
         $data['platform_user_id'] = $params['platform_user_id'];
       }
 
-      if(isset($params['device_id'])){
-        $data['device_id'] = $params['device_id'];
-      }      
-
       if(isset($params['auth_token'])){
         $data['auth_token'] = $params['auth_token']; 
       }
