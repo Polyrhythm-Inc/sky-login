@@ -4,12 +4,11 @@ sky-login
 Sky-login is a login module library work as standalone.  
 
 ## Release Notes
-Sep 06 2013 - alpha release.
 
 
 ## System Required Softwares
 * php (must 5.3.0 or later)
-* PDO Mysql module
+* PDO Mysql
 * mysql (recommend 5.5 or later)
 
 *If you want to run tests, You have to install phpunit.
