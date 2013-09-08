@@ -2,7 +2,7 @@
 
 use lib\configure\Datastore;
 
-$conf = Datastore::get('default');
+$conf = Datastore::get(Datastore::$currentUsing);
 
 \ActiveRecord\Config::initialize(function($cfg) use ($conf)
 {

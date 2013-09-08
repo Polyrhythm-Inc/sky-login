@@ -3,6 +3,7 @@
 require_once (dirname(__FILE__) . '/../SkyLogin.php');
 
 \SkyLogin\Datastore::add('default', array(
+    'adapter' => 'mysql',
     'host' => 'localhost',
     'port' => null,
     'user' => 'root',
@@ -12,9 +13,11 @@ require_once (dirname(__FILE__) . '/../SkyLogin.php');
 );
 
 
-$conf = \SkyLogin\Datastore::get('default');
 
 \SkyLogin\Configure::write('securitySalt', 'o1ty8ha@-m^');
 
+
+
 //initialization SkyLogin Module
+\SkyLogin\Datastore::switchStore('default');
 \SkyLogin\Platform::initialize('SessionLogin');

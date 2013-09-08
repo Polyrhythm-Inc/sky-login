@@ -6,6 +6,8 @@ class Datastore {
   
   protected static $configMap = array();
 
+  public static $currentUsing = null;
+
   public static function add($key, $value){
     self::$configMap[$key] = $value;
   }
@@ -15,6 +17,10 @@ class Datastore {
       return self::$configMap[$key];
     }
     return null;
+  }
+
+  public static function switchStore($env){
+    self::$currentUsing = $env;
   }
 
   public static function getMap(){

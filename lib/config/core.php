@@ -15,7 +15,7 @@ require_once SKYLOGIN_VENDOR_PATH . '/SplClassLoader.php';
 $classLoader = new \SplClassLoader(null, SKYLOGIN_ROOT);
 $classLoader->register();
 
-function __load_platform_initialize_files(){
+function __boot_loader(){
   require_once SKYLOGIN_LIB_PATH . '/config/boot.php';
 }
 

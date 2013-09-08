@@ -19,9 +19,6 @@ class SessionLogin extends BaseAgent implements AgentProvider {
 
   private $platformId = 1;
 
-  public function __construct(){}
-
-
   public function register($params = array()){
 
     $exsits = User::getByNameAndEmailAndPasswd($params['user_name'], $params['email'], $params['password']);
@@ -50,15 +47,29 @@ class SessionLogin extends BaseAgent implements AgentProvider {
 
   public function login($params = array()){
 
-    $isEmaiLogin = Utility::isValidEmailFormat($params['login']);
-
     $exsits = false;
 
-    if($isEmaiLogin){
-      $exists = User::getByEmailAndPasswd($params['login'], $params['password']);
-    }else{
+    $enableEmailAuth = Configure::get('enableEmailAuth');
+    $enableNameAuth = Configure::get('enableNameAuth');
+
+    if($enableEmailAuth && $enableNameAuth){
+
+      $isEmaiLogin = Utility::isValidEmailFormat($params['login']);
+      if($isEmaiLogin){
+        $exists = User::getByEmailAndPasswd($params['login'], $params['password']);
+      }else{
+        $exists = User::getByNameAndPasswd($params['login'], $params['password']);
+      }
+
+    }
+    else if (!$enableEmailAuth && $enableNameAuth){
       $exists = User::getByNameAndPasswd($params['login'], $params['password']);
-    } 
+    }
+    else
+    {
+      //default
+      $exists = User::getByEmailAndPasswd($params['login'], $params['password']);
+    }
 
     if(!is_null($exists)){
       Session::write('isLogin', true);

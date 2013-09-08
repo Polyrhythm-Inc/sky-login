@@ -14,7 +14,7 @@ class Platform {
 
   public static function initialize($platformName = null){
     
-    __load_platform_initialize_files();
+    __boot_loader();
     
     if($platformName === null){ return; }
 
