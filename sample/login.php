@@ -9,7 +9,10 @@ $isAuthorized = \SkyLogin\Platform::isAuthorized();
 
 if(!$isAuthorized){
   header('Location: /sky-login/sample/index.php');
+  return;
 }
+
+$me = \SkyLogin\Platform::user();
 
 ?>
 
@@ -53,7 +56,7 @@ if(!$isAuthorized){
   <body>
     <div class="container">
 
-      <h4>Login Succeeded. Login as <?php echo $_SESSION['SkyLogin::me']['name'];?>.</h4>
+      <h4>Login Succeeded. Login as <?php echo $me['name'];?>.</h4>
       <a href="/sky-login/sample/logout.php">Logout</a>
 
     </div> <!-- /container -->

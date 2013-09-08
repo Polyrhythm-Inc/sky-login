@@ -37,7 +37,7 @@ Configure::write('debug', true);
 
 Configure::write('debugLogPath', null);
 
-Configure::write('enableUserhashId', true);
+Configure::write('enableUserhashId', false);
 
 Configure::write('enableAutoLoginWithDeviceId', false);
 
