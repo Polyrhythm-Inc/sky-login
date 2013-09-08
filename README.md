@@ -4,7 +4,6 @@ sky-login
 Sky-login is a login module library work as standalone.  
 
 ## Release Notes
-Sep 06 2013 - alpha release.
 
 
 ## System Required Softwares
