@@ -21,6 +21,8 @@ class Validator {
       }
     }
 
+    return true;
+
   }
 
 }
