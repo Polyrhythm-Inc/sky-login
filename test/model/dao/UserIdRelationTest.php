@@ -3,7 +3,6 @@
 namespace SkyLogin\test\model\dao;
 
 require_once dirname(__FILE__) . '/../../boot.php';
-require_once SKYLOGIN_LIB_PATH . '/model/dao/User.php';
 
 use SkyLogin\lib\model\dao\UserIdRelation;
 use SkyLogin\lib\exception\UnexpectedParameterException;
@@ -14,7 +13,8 @@ class UserIdRelationTest extends \PHPUnit_Framework_TestCase {
   private $tableName = 'user_id_relations';
 
   protected function setUp(){
-    UserIdRelation::connection()->query('TRUNCATE ' . $this->tableName);
+    $table = UserIdRelation::table();
+    UserIdRelation::connection()->query('TRUNCATE ' . $table->table);
   }
 
   public function testAdd(){
@@ -86,7 +86,8 @@ class UserIdRelationTest extends \PHPUnit_Framework_TestCase {
 
 
   protected function tearDown(){
-    UserIdRelation::connection()->query('TRUNCATE ' . $this->tableName);
+    $table = UserIdRelation::table();
+    UserIdRelation::connection()->query('TRUNCATE ' . $table->table);
   }
 
 }

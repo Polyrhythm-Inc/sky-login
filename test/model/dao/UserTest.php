@@ -3,7 +3,6 @@
 namespace SkyLogin\test\model\dao;
 
 require_once dirname(__FILE__) . '/../../boot.php';
-require_once SKYLOGIN_LIB_PATH . '/model/dao/User.php';
 
 use SkyLogin\lib\model\dao\User;
 use SkyLogin\lib\exception\UnexpectedParameterException;
@@ -11,10 +10,9 @@ use SkyLogin\lib\util\Utility;
 
 class UserTest extends \PHPUnit_Framework_TestCase {
 
-  private $tableName = 'users';
-
   protected function setUp(){
-    User::connection()->query('TRUNCATE ' . $this->tableName);
+    $table = User::table();
+    User::connection()->query('TRUNCATE ' . $table->table);
     $json = (array)\SkyLogin\lib\util\Parser::json(SKYLOGIN_FIXTURES_PATH . '/User.json');
     User::create($json);
   }
@@ -218,7 +216,8 @@ class UserTest extends \PHPUnit_Framework_TestCase {
 
 
   protected function tearDown(){
-    User::connection()->query('TRUNCATE ' . $this->tableName);
+    $table = User::table();
+    User::connection()->query('TRUNCATE ' . $table->table);
   }
 
 }

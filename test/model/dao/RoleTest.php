@@ -3,7 +3,6 @@
 namespace SkyLogin\test\model\dao;
 
 require_once dirname(__FILE__) . '/../../boot.php';
-require_once SKYLOGIN_LIB_PATH . '/model/dao/Role.php';
 
 use SkyLogin\lib\exception\UnexpectedParameterException;
 use SkyLogin\lib\util\Utility;

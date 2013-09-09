@@ -42,7 +42,6 @@ CREATE TABLE IF NOT EXISTS `user_each_platform_authentications` (
   `user_id` bigint(20) DEFAULT NULL,
   `platform_id` int(11) DEFAULT NULL,
   `platform_user_id` varchar(255) DEFAULT NULL,
-  `device_id` varchar(255) DEFAULT NULL,
   `auth_token` varchar(64) DEFAULT NULL,
   `expires` datetime DEFAULT NULL,
   `created` datetime NOT NULL,
@@ -50,9 +49,8 @@ CREATE TABLE IF NOT EXISTS `user_each_platform_authentications` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `platform_id_auth_token` (`platform_id`,`auth_token`),
   UNIQUE KEY `platform_id_and_user_id` (`platform_id`,`user_id`),
-  UNIQUE KEY `platform_id_platform_user_id` (`platform_id`,`platform_user_id`),
-  UNIQUE KEY `platform_id_device_id` (`platform_id`,`device_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  UNIQUE KEY `platform_id_platform_user_id` (`platform_id`,`platform_user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -68,4 +66,26 @@ CREATE TABLE IF NOT EXISTS `user_roles` (
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_id_role_id` (`user_id`,`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_devices`
+--
+
+CREATE TABLE IF NOT EXISTS `user_devices` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) NOT NULL,
+  `devide_id` varchar(255) NOT NULL,
+  `devide_id_dec` bigint(20) unsigned NOT NULL,
+  `device_token` varchar(255) NOT NULL,
+  `os_type_id` int(11) NOT NULL,
+  `last_login_datetime` datetime NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `os_type_id_device_id` (`os_type_id`,`devide_id`),
+  UNIQUE KEY `os_type_id_device_id_dec` (`os_type_id`,`devide_id_dec`),
+  KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;

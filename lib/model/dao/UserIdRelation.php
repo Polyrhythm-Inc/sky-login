@@ -46,7 +46,8 @@ class UserIdRelation extends \SkyLogin\lib\model\dao\BaseDao {
 
     $hashId = self::connection()->escape($hashId);
 
-    $sql = "SELECT id, hash_id, hash_id_dec FROM user_id_relations ";
+    $table = self::table();
+    $sql = "SELECT id, hash_id, hash_id_dec FROM {$table->table} ";
     $castValue = 'CAST(x' . $hashId . " as UNSIGNED)";
     $sql .= "WHERE hash_id_dec = " . $castValue;
 

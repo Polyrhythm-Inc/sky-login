@@ -3,7 +3,6 @@
 namespace SkyLogin\test\model\dao;
 
 require_once dirname(__FILE__) . '/../../boot.php';
-require_once SKYLOGIN_LIB_PATH . '/model/dao/UserEachPlatformAuthentication.php';
 
 use SkyLogin\lib\exception\UnexpectedParameterException;
 use SkyLogin\lib\util\Utility;
@@ -68,7 +67,6 @@ class UserEachPlatformAuthenticationTest extends \PHPUnit_Framework_TestCase {
         "user_id" => 1,
         "platform_id" => $pid,
         "platform_user_id" => 2,
-        "device_id" => null,
         "auth_token" => $token,
         "expires" => "1988-07-22T00:00:00+0900",
         "created" => "1988-07-22T00:00:00+0900",
