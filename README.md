@@ -41,7 +41,7 @@ require 'SkyLogin.php';
 );
 
 \SkyLogin\Configure::write('securitySalt', 'o1ty8ha@-m^');
-\SkyLogin\Role::setJsonPath('/path/to/your/role.json');
+\SkyLogin\model\Role::setJsonPath('/path/to/your/role.json');
 
 //initialize SkyLogin Module
 \SkyLogin\Platform::initialize('SessionLogin');
