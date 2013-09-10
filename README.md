@@ -74,8 +74,7 @@ if($req->isPost()
     array(
         //Can add function to transaction internal register method.
         function($me){
-            $roleId = 1;
-            \SkyLogin\Role::add($me['id'], $roleId);
+            \SkyLogin\model\UserRole::add(array('user_id' => $me['id'], 'role_id' => 1));
         },
         function($me){
             // some logic here
