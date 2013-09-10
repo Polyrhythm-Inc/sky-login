@@ -10,11 +10,18 @@ class Role {
 
   private static $roles = null;
 
+  private static $jsonPath = null;
+
+  private function __construct(){}
+
+  public static function setJsonPath($path){
+    self::$jsonPath = $path;
+  }
 
   public static function getById($id){
 
     if(is_null(self::$roles)){
-      self::$roles = \SkyLogin\lib\util\Parser::json(SKYLOGIN_MASTER_PATH . '/role.json');
+      self::$roles = \SkyLogin\lib\util\Parser::json( is_null(self::$jsonPath) ? SKYLOGIN_MASTER_PATH . '/role.json' : $jsonPath); 
     }
     
     if(empty($id)){

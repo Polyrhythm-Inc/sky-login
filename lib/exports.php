@@ -1,36 +1,21 @@
 <?php
 
-namespace SkyLogin;
+namespace SkyLogin {
 
-class Request   extends  \SkyLogin\lib\http\Request {}
-class Platform  extends  \SkyLogin\lib\platform\Platform {}
-class Datastore extends  \SkyLogin\lib\configure\Datastore {}
-class Configure extends  \SkyLogin\lib\configure\Configure {}
-
-
-use SkyLogin\lib\model\dao\UserRole;
-
-class Role {
-
-  public static function add($userId, $roleId){
-    return UserRole::add(array(
-      'user_id' => $userId,
-      'role_id' => $roleId
-    ));
-  }
-
-  public static function remove($userId, $roleId){
-    return UserRole::delteByUserIdAndRoleId($userId, $roleId);
-  }
+  class Request   extends  \SkyLogin\lib\http\Request {}
+  class Platform  extends  \SkyLogin\lib\platform\Platform {}
+  class Datastore extends  \SkyLogin\lib\configure\Datastore {}
+  class Configure extends  \SkyLogin\lib\configure\Configure {}
 
 }
 
-use SkyLogin\lib\model\dao\UserDevice;
+namespace SkyLogin\model {
 
-class Device {
-
-  public static function add($params = array()){
-    UserDevice::add($params);
-  }
+  class UserDevice extends \SkyLogin\lib\model\dao\UserDevice {}
+  class User extends \SkyLogin\lib\model\dao\User {}
+  class UserIdRelation extends \SkyLogin\lib\model\dao\UserIdRelation {}
+  class UserEachPlatformAuthentication extends \SkyLogin\lib\model\dao\UserEachPlatformAuthentication {}
+  class UserRole extends \SkyLogin\lib\model\dao\UserRole {}
+  class Role extends \SkyLogin\lib\model\dao\Role {}
 
 }
