@@ -4,7 +4,7 @@ namespace SkyLogin\lib\platform\provider;
 
 interface AgentProvider {
 
-  public function register($params = array());
+  public function register($params = array(), $addTransactions = array());
 
   public function login($params = array());
 

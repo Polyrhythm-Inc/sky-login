@@ -29,8 +29,8 @@ use SkyLogin\lib\model\dao\UserDevice;
 
 class Device {
 
-  public static function add(){
-
+  public static function add($params = array()){
+    UserDevice::add($params);
   }
 
 }

@@ -8,20 +8,30 @@ use SkyLogin\lib\model\service\UserService;
 use SkyLogin\lib\model\dao\User;
 use SkyLogin\lib\model\dao\UserIdRelation;
 use SkyLogin\lib\model\dao\UserEachPlatformAuthentication;
+use SkyLogin\lib\model\dao\UserRole;
+use SkyLogin\lib\model\dao\UserDevice;
+
 use SkyLogin\lib\exception\UnexpectedParameterException;
 use SkyLogin\lib\util\Utility;
 
+
 class UserServiceTest extends \PHPUnit_Framework_TestCase {
 
-  protected function setUp(){
+  private function initialize(){
     User::connection()->query('TRUNCATE users');
     UserIdRelation::connection()->query('TRUNCATE user_id_relations');
     UserEachPlatformAuthentication::connection()->query('TRUNCATE user_each_platform_authentications');
+    UserRole::connection()->query('TRUNCATE user_roles');
+    UserDevice::connection()->query('TRUNCATE user_devices');
+  }
+
+  protected function setUp(){
+    $this->initialize();
   }
 
   public function testRegister(){
 
-    //正常系
+    //正常系(addTransactions含む)
     {
       $testData = array(
         'user_name' => 'test_user1',
@@ -35,7 +45,28 @@ class UserServiceTest extends \PHPUnit_Framework_TestCase {
         'expires' => '1988-07-22 00:00:00'
       );
 
-      $res = UserService::register($testData);
+      $self = $this;
+
+      $res = UserService::register($testData, 
+        array(
+          function($me) use ($self) {
+            $results = UserRole::add(array(
+              'user_id' => $me['id'],
+              'role_id' => 1
+            ));
+            $self->assertNotNull(UserRole::first($results->id));
+          },
+          function($me) use ($self) {
+            $results = UserDevice::add(array(
+              'user_id' => $me['id'],
+              'device_id' => '25ab890e76d7801cda56abf8',
+              'device_token' => '25ab890e76d7801cda56abf8',
+              'os_type_id' => 1
+            ));
+            $self->assertNotNull(UserDevice::first($results['id']));
+          }          
+        )
+      );
       $this->assertNotNull($res);
 
     }
@@ -79,9 +110,7 @@ class UserServiceTest extends \PHPUnit_Framework_TestCase {
   }
 
   protected function tearDown(){
-    User::connection()->query('TRUNCATE users');
-    UserIdRelation::connection()->query('TRUNCATE user_id_relations');
-    UserEachPlatformAuthentication::connection()->query('TRUNCATE user_each_platform_authentications');
+    $this->initialize();
   }
 
 

@@ -11,7 +11,7 @@ use SkyLogin\lib\configure\Configure;
 
 class UserService {
 
-  public static function register($params){
+  public static function register($params = array(), $addTransactions = array()){
 
     Validator::required($params, 
       array(
@@ -81,6 +81,10 @@ class UserService {
       $res = UserEachPlatformAuthentication::add($data);
       if(empty($res)){
         throw new Exception('User registration was failed.');
+      }
+      
+      foreach($addTransactions as $val){
+        $val($user->to_array());
       }
 
       $c->commit();

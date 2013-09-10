@@ -18,13 +18,13 @@ class SessionLogin extends BaseAgent implements AgentProvider {
 
   private $platformId = 1;
 
-  public function register($params = array()){
+  public function register($params = array(), $addTransactions = array()){
 
     $exsits = User::getByNameAndEmailAndPasswd($params['user_name'], $params['email'], $params['password']);
 
     if(is_null($exsits)){
 
-      $params = array(
+      $data = array(
         'user_name' => $params['user_name'],
         'email' => $params['email'],
         'password' => $params['password'],
@@ -35,7 +35,7 @@ class SessionLogin extends BaseAgent implements AgentProvider {
 
       try{
 
-        $user = UserService::register($params);
+        $user = UserService::register($data, $addTransactions);
 
       }catch(\Exception $e){
         if(preg_match('/Duplicate entry/', $e->__toString())){
