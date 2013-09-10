@@ -68,6 +68,11 @@ class SessionLogin extends BaseAgent implements AgentProvider {
     }
   }
 
+  //deviceid
+  public function autoLogin($params = array()){
+
+  }
+
   public function login($params = array()){
 
     $exsits = false;
