@@ -51,6 +51,7 @@ if($req->isPost()) {
 
 <html>
   <head>
+      <meta charset="utf-8">
       <link href="/sky-login/sample/css/bootstrap.css" rel="stylesheet">
       <style type="text/css">
         body {

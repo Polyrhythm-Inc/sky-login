@@ -91,7 +91,7 @@ class SessionLogin extends BaseAgent implements AgentProvider {
     else
     {
       //default
-      $exists = User::getByEmailAndPasswd($params['login'], $params['password']);
+      $exists = User::getByNameAndPasswd($params['login'], $params['password']);
     }
 
     if(!is_null($exists)){
