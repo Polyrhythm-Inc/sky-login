@@ -70,6 +70,16 @@ if($req->isPost()
       'password' => $password,
       'role' => $role,
       'hash_id' => sha1($userName . microtime() . mt_rand(0,1000))
+    ),
+    array(
+        //Can add function to transaction internal register method.
+        function($me){
+            $roleId = 1;
+            \SkyLogin\Role::add($me['id'], $roleId);
+        },
+        function($me){
+            // some logic here
+        }
     )
   );
 
