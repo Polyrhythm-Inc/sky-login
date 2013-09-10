@@ -42,7 +42,7 @@ require 'SkyLogin.php';
 
 \SkyLogin\Configure::write('securitySalt', 'o1ty8ha@-m^');
 
-//initialization SkyLogin Module
+//initialize SkyLogin Module
 \SkyLogin\Platform::initialize('SessionLogin');
 </pre>
 
