@@ -11,16 +11,17 @@ require_once SKYLOGIN_VENDOR_PATH . '/SplClassLoader.php';
 $classLoader = new \SplClassLoader(null, SKYLOGIN_ROOT);
 $classLoader->register();
 
-\SkyLogin\lib\configure\Datastore::add('default', array(
-    'host' => 'localhost',
-    'port' => null,
-    'user' => 'root',
-    'passwd' => 'y_takei',
-    'db' => 'skylogin_test',
-  )
-);
 
-$conf = \SkyLogin\lib\configure\Datastore::get('default');
+if(!isset($_SERVER['SKY_LOGIN_DB_CONFIG_FILE_PATH'])){
+  echo "Environment variable SKY_LOGIN_DB_CONFIG_FILE_PATH must required.";
+  exit(1);
+}
+
+require_once $_SERVER['SKY_LOGIN_DB_CONFIG_FILE_PATH'];
+
+$env = isset($_SERVER['PHP_ENV']) ? $_SERVER['PHP_ENV'] : 'development';
+
+$conf = \SkyLogin\lib\configure\Datastore::get($env);
 
 \ActiveRecord\Config::initialize(function($cfg) use ($conf)
 {
