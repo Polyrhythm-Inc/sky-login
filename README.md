@@ -73,7 +73,7 @@ if($req->isPost()
       'hash_id' => sha1($userName . microtime() . mt_rand(0,1000))
     ),
     array(
-        //Can add function to transaction internal register method.
+        //Can add function to transaction block in this method.
         function($me){
             \SkyLogin\model\UserRole::add(array('user_id' => $me['id'], 'role_id' => 1));
         },
