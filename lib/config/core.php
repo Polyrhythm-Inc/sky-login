@@ -7,8 +7,6 @@
 *
 ****************************************/
 
-date_default_timezone_set('Asia/Tokyo');
-
 require_once SKYLOGIN_VENDOR_PATH . '/php-activerecord/ActiveRecord.php';
 require_once SKYLOGIN_VENDOR_PATH . '/SplClassLoader.php';
 

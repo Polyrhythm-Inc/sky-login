@@ -1,5 +1,7 @@
 <?php
 
+date_default_timezone_set('Asia/Tokyo');
+
 require_once (dirname(__FILE__) . '/../SkyLogin.php');
 
 \SkyLogin\Datastore::add('default', array(
