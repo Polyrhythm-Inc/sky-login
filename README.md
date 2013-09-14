@@ -78,7 +78,7 @@ if($req->isPost()
             \SkyLogin\model\UserRole::add(array('user_id' => $me['id'], 'role_id' => 1));
         },
         function($me){
-            // some logic here
+            \SkyLogin\model\UserDevice::add(.....
         }
     )
   );
@@ -143,9 +143,49 @@ Can auto login, if cookie values for skylogin are transmited from client and the
 <pre>Configure::write('cookieName', '__sltk__');</pre>
 
 
+
+## Api reference
+
+### \SkyLogin\Platform
+
+#### auth([function callback])
+<pre>
+\SkyLogin\Platform::auth(function(){
+    //some logic here...
+});
+</pre>
+
+#### login(array $params)
+<pre>
+\SkyLogin\Platform::login(array(
+    'email' => 'hogehoge',
+    'password' => 'fugafuga'
+));
+</pre>
+
+#### register(array $params, [array $addTransactions])
+<b>Do registration based on $params.</b>  
+If you want to add database insert or update logic in transaction block, you need to give function list to second arg. 
+<pre>
+\SkyLogin\Platform::login(array(
+    'email' => 'hogehoge',
+    'password' => 'fugafuga'
+));
+</pre>
+
+#### logout
+Destruction user data on session and cookie.
+<pre>
+\SkyLogin\Platform::logout();
+</pre>
+
+### \SkyLogin\model
+
+
 ## Run Test
 <pre>
 $ cd sky-login
+$ export PHP_ENV=development && export SKY_LOGIN_DB_CONFIG_FILE_PATH=/path/to/your/test_db_config.php
 $ phpunit test/
 </pre>
 
