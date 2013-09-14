@@ -165,7 +165,7 @@ Can auto login, if cookie values for skylogin are transmited from client and the
 
 #### register(array $params, [array $addTransactions])
 <b>Do registration based on $params.</b>  
-If you want to add database insert or update logic in transaction block, you need to give function list to second arg. 
+If you want to add some logic in transaction block, you need to give function list to second arg. 
 <pre>
 \SkyLogin\Platform::login(array(
     'email' => 'hogehoge',
