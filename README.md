@@ -119,7 +119,7 @@ Enable this option, if you want to use user_id which is not a auto increment val
 System will generate randome hashid and add it to user_id_relations table which relates users.user_id_relation_sequence_id.
 <pre>Configure::write('enableUserhashId', true);</pre>
 
-#### enableAutoLoginWithDeviceId
+#### enableAutoLoginWithDeviceId(Not implemented)
 Can auto login, when device_id and platform_id(ios or android) are transmited from client.
 <pre>Configure::write('enableAutoLoginWithDeviceId', false);</pre>
 
@@ -134,14 +134,14 @@ Enable name based authentication
 ##### additianla info
 If both of enableEmailAuth and enableNameAuth are 'true', You can login either email or user_name.
 
-#### enableAutoLoginWithCookie
+#### enableAutoLoginWithCookie(Not implemented)
 Can auto login, if cookie values for skylogin are transmited from client and they have verify value.
 <pre>Configure::write('enableAutoLoginWithCookie', false);</pre>
 
-#### cookieAuthExpires
+#### cookieAuthExpires(Not implemented)
 <pre>Configure::write('cookieAuthExpires', 86400);</pre>
 
-#### cookieName
+#### cookieName(Not implemented)
 <pre>Configure::write('cookieName', '__sltk__');</pre>
 
 
