@@ -16,7 +16,7 @@ https://github.com/sebastianbergmann/phpunit/
 
 ## Installation
 
-<b>!! Before enter commands written in bellow, You have to create database for Sky-login module.</b>
+<b>!! Before enter commands written in bellow, You need to create database for Sky-login module.</b>
 <pre>
 $ git clone git@github.com:noppoMan/sky-login.git
 $ cd sky-login
