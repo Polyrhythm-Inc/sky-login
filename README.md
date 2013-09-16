@@ -214,6 +214,10 @@ Destruction user data on session and cookie.
 ##### updateByPlatformIdAndUserId(array $params, int, $platformid, int $userid)
 --
 
+#### Role
+##### getById(int $id)
+--
+
 ## Run Test
 <pre>
 $ cd sky-login
