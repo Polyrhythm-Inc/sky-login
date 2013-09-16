@@ -41,6 +41,8 @@ require 'SkyLogin.php';
 );
 
 \SkyLogin\Configure::write('securitySalt', 'o1ty8ha@-m^');
+
+//If you want to use the role on sky-login, you need to set the path to your role configuration json file.
 \SkyLogin\model\Role::setJsonPath('/path/to/your/role.json');
 
 //initialize SkyLogin Module
@@ -204,6 +206,7 @@ Destruction user data on session and cookie.
 #### UserIdRelation
 ##### getByHashId(string $hashid)
 ##### add(array $params)
+
 --
 #### UserEachPlatformAuthentication
 ##### getByPlatformIdAndAuthToken(int $platformid, string $token)
