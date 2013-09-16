@@ -181,6 +181,35 @@ Destruction user data on session and cookie.
 
 ### \SkyLogin\model
 
+#### User
+##### getByUserId(int $userid)
+##### getByUserIdRelationSequenceId(int $sid)
+##### getByNameAndEmailAndPasswd(string $name, string $email, string $password)
+##### getByEmailAndPasswd(string email, string $password)
+##### getByNameAndPasswd(string name, string $password)
+--
+
+#### UserDevice
+##### getByUserId(int $userid)
+##### getByOsTypeIdAndDeviceId(int $osTypeId, string $deviceid)
+##### add(array $params)
+--
+
+#### UserRole
+##### getByUserIdAndRoleId(int $userid, int $roleId)
+##### delteByUserIdAndRoleId(int $osTypeId, string $deviceid)
+##### add(array $params)
+--
+
+#### UserIdRelation
+##### getByHashId(string $hashid)
+##### add(array $params)
+--
+#### UserEachPlatformAuthentication
+##### getByPlatformIdAndAuthToken(int $platformid, string $token)
+##### add(array $params)
+##### updateByPlatformIdAndUserId(array $params, int, $platformid, int $userid)
+--
 
 ## Run Test
 <pre>
