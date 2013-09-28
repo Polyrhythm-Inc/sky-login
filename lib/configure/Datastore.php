@@ -6,7 +6,7 @@ class Datastore {
   
   protected static $configMap = array();
 
-  public static $currentUsing = null;
+  public static $currentUsing = 'default';
 
   public static function add($key, $value){
     self::$configMap[$key] = $value;
