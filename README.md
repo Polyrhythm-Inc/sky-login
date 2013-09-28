@@ -175,11 +175,18 @@ If you want to add some logic in transaction block, you need to give function li
 ));
 </pre>
 
-#### logout
-Destruction user data on session and cookie.
+#### void logout
+Destruct all user data on session and cookie.
 <pre>
 \SkyLogin\Platform::logout();
 </pre>
+
+#### bool hasRole(mix $key)
+<pre>
+\SkyLogin\Platform::hasRole('admin'); // Serch based on role name from role.json .
+\SkyLogin\Platform::hasRole(1); // Serch based on role id from role.json.
+</pre>
+
 
 ### \SkyLogin\model
 
