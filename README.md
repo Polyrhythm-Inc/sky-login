@@ -16,7 +16,7 @@ https://github.com/sebastianbergmann/phpunit/
 
 ## Installation
 
-<b>!! Before enter commands written in bellow, You have to create database for Sky-login module.</b>
+<b>!! Before enter commands written in bellow, You need to create database for Sky-login module.</b>
 <pre>
 $ git clone git@github.com:noppoMan/sky-login.git
 $ cd sky-login
@@ -41,6 +41,8 @@ require 'SkyLogin.php';
 );
 
 \SkyLogin\Configure::write('securitySalt', 'o1ty8ha@-m^');
+
+//If you want to use the role on sky-login, you need to set the path to your role configuration json file.
 \SkyLogin\model\Role::setJsonPath('/path/to/your/role.json');
 
 //initialize SkyLogin Module
@@ -73,7 +75,7 @@ if($req->isPost()
       'hash_id' => sha1($userName . microtime() . mt_rand(0,1000))
     ),
     array(
-        //Can add function to transaction internal register method.
+        //Can add function to transaction block in this method.
         function($me){
             \SkyLogin\model\UserRole::add(array('user_id' => $me['id'], 'role_id' => 1));
         },
@@ -117,7 +119,7 @@ Enable this option, if you want to use user_id which is not a auto increment val
 System will generate randome hashid and add it to user_id_relations table which relates users.user_id_relation_sequence_id.
 <pre>Configure::write('enableUserhashId', true);</pre>
 
-#### enableAutoLoginWithDeviceId
+#### enableAutoLoginWithDeviceId(Not implemented)
 Can auto login, when device_id and platform_id(ios or android) are transmited from client.
 <pre>Configure::write('enableAutoLoginWithDeviceId', false);</pre>
 
@@ -132,14 +134,14 @@ Enable name based authentication
 ##### additianla info
 If both of enableEmailAuth and enableNameAuth are 'true', You can login either email or user_name.
 
-#### enableAutoLoginWithCookie
+#### enableAutoLoginWithCookie(Not implemented)
 Can auto login, if cookie values for skylogin are transmited from client and they have verify value.
 <pre>Configure::write('enableAutoLoginWithCookie', false);</pre>
 
-#### cookieAuthExpires
+#### cookieAuthExpires(Not implemented)
 <pre>Configure::write('cookieAuthExpires', 86400);</pre>
 
-#### cookieName
+#### cookieName(Not implemented)
 <pre>Configure::write('cookieName', '__sltk__');</pre>
 
 
@@ -165,7 +167,7 @@ Can auto login, if cookie values for skylogin are transmited from client and the
 
 #### register(array $params, [array $addTransactions])
 <b>Do registration based on $params.</b>  
-If you want to add database insert or update logic in transaction block, you need to give function list to second arg. 
+If you want to add some logic in transaction block, you need to give function list to second arg. 
 <pre>
 \SkyLogin\Platform::login(array(
     'email' => 'hogehoge',
@@ -181,6 +183,40 @@ Destruction user data on session and cookie.
 
 ### \SkyLogin\model
 
+#### User
+##### getByUserId(int $userid)
+##### getByUserIdRelationSequenceId(int $sid)
+##### getByNameAndEmailAndPasswd(string $name, string $email, string $password)
+##### getByEmailAndPasswd(string email, string $password)
+##### getByNameAndPasswd(string name, string $password)
+--
+
+#### UserDevice
+##### getByUserId(int $userid)
+##### getByOsTypeIdAndDeviceId(int $osTypeId, string $deviceid)
+##### add(array $params)
+--
+
+#### UserRole
+##### getByUserIdAndRoleId(int $userid, int $roleId)
+##### delteByUserIdAndRoleId(int $osTypeId, string $deviceid)
+##### add(array $params)
+--
+
+#### UserIdRelation
+##### getByHashId(string $hashid)
+##### add(array $params)
+
+--
+#### UserEachPlatformAuthentication
+##### getByPlatformIdAndAuthToken(int $platformid, string $token)
+##### add(array $params)
+##### updateByPlatformIdAndUserId(array $params, int, $platformid, int $userid)
+--
+
+#### Role
+##### getById(int $id)
+--
 
 ## Run Test
 <pre>
