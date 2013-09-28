@@ -14,16 +14,21 @@ class Role {
 
   private function __construct(){}
 
-  public static function setJsonPath($path){
-    self::$jsonPath = $path;
+  public static function setJsonPath($path = 'default'){
+    if($path != 'default'){
+      self::$jsonPath = $path;
+    }else{
+      self::$jsonPath = SKYLOGIN_MASTER_PATH . '/role.json';
+    }
+    self::$roles = \SkyLogin\lib\util\Parser::json(self::$jsonPath); 
+  }
+
+  public static function getMap(){
+    return (array)self::$roles;
   }
 
   public static function getById($id){
 
-    if(is_null(self::$roles)){
-      self::$roles = \SkyLogin\lib\util\Parser::json( is_null(self::$jsonPath) ? SKYLOGIN_MASTER_PATH . '/role.json' : $jsonPath); 
-    }
-    
     if(empty($id)){
       throw new UnexpectedParameterException;
     }

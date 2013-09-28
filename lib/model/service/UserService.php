@@ -51,7 +51,7 @@ class UserService {
       $data = array(
         'user_id_relation_sequence_id' => $user_id_relation_sequence_id,
         'name' => $userName,
-        'display_name' => $userName,
+        'display_name' => isset($params['display_name']) ? $params['display_name'] : $userName,
         'email' => $email,
         'password' => $password,
       );

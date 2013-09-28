@@ -11,7 +11,9 @@ use SkyLogin\lib\model\dao\Role;
 class RoleTest extends \PHPUnit_Framework_TestCase {
 
 
-  protected function setUp(){}
+  protected function setUp(){
+    Role::setJsonPath();
+  }
 
   public function testGetById(){
 

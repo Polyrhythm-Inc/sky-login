@@ -17,5 +17,4 @@ namespace SkyLogin\model {
   class UserEachPlatformAuthentication extends \SkyLogin\lib\model\dao\UserEachPlatformAuthentication {}
   class UserRole extends \SkyLogin\lib\model\dao\UserRole {}
   class Role extends \SkyLogin\lib\model\dao\Role {}
-
 }
