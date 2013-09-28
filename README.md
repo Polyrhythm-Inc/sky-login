@@ -134,6 +134,11 @@ Enable name based authentication
 ##### additianla info
 If both of enableEmailAuth and enableNameAuth are 'true', You can login either email or user_name.
 
+
+#### enableContainUserRoleData
+If this configuration value is true, System attach user role data to $me(getable Platform::auth() callback arg) and return value of Platform::user()
+<pre>Configure::write('enableContainUserRoleData', true);</pre>
+
 #### enableAutoLoginWithCookie(Not implemented)
 Can auto login, if cookie values for skylogin are transmited from client and they have verify value.
 <pre>Configure::write('enableAutoLoginWithCookie', false);</pre>
@@ -175,11 +180,19 @@ If you want to add some logic in transaction block, you need to give function li
 ));
 </pre>
 
-#### logout
-Destruction user data on session and cookie.
+#### void logout
+Destruct all user data on session and cookie.
 <pre>
 \SkyLogin\Platform::logout();
 </pre>
+
+#### bool hasRole(mix $key)
+##### Don't use this method if enableContainUserRoleData is disable.
+<pre>
+\SkyLogin\Platform::hasRole('admin'); // Serch based on role name from role.json .
+\SkyLogin\Platform::hasRole(1); // Serch based on role id from role.json.
+</pre>
+
 
 ### \SkyLogin\model
 
