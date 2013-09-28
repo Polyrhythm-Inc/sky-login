@@ -187,6 +187,7 @@ Destruct all user data on session and cookie.
 </pre>
 
 #### bool hasRole(mix $key)
+##### Don't use this method if enableContainUserRoleData is disable.
 <pre>
 \SkyLogin\Platform::hasRole('admin'); // Serch based on role name from role.json .
 \SkyLogin\Platform::hasRole(1); // Serch based on role id from role.json.
