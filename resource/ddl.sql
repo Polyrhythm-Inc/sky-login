@@ -1,7 +1,7 @@
 --
 -- Table structure for table `users`
 --
-
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_id_relation_sequence_id` bigint(20) DEFAULT NULL,
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 -- Table structure for table `user_devices`
 --
-
+DROP TABLE IF EXISTS `user_devices`;
 CREATE TABLE IF NOT EXISTS `user_devices` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `user_devices` (
 --
 -- Table structure for table `user_each_platform_authentications`
 --
-
+DROP TABLE IF EXISTS `user_each_platform_authentications`;
 CREATE TABLE IF NOT EXISTS `user_each_platform_authentications` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) DEFAULT NULL,
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `user_each_platform_authentications` (
 --
 -- Table structure for table `user_id_relations`
 --
-
+DROP TABLE IF EXISTS `user_id_relations`;
 CREATE TABLE IF NOT EXISTS `user_id_relations` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `hash_id` varchar(64) NOT NULL,
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `user_id_relations` (
 --
 -- Table structure for table `user_roles`
 --
-
+DROP TABLE IF EXISTS `user_roles`;
 CREATE TABLE IF NOT EXISTS `user_roles` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) NOT NULL,

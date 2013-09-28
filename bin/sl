@@ -105,8 +105,8 @@ if($cmd == 'migrate'){
 
   echo 'migration start.........'. "\n\n";
 
-  $drop = 'DROP DATABASE IF EXISTS ' . $d . ';';
-  $create = 'CREATE DATABASE ' . $d . ' charset=utf8;';
+  $drop = '';//'DROP DATABASE IF EXISTS ' . $d . ';';
+  $create = '';//'CREATE DATABASE ' . $d . ' charset=utf8;';
   $use = 'USE ' . $d . ';';
   
   $db->query($drop . $create . $use . $sql);
