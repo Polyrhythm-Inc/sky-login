@@ -24,7 +24,8 @@ class RoleTest extends \PHPUnit_Framework_TestCase {
         array(
           "id"=> 1,
           "name"=> "admin",
-          "name_ja" => "管理者"
+          "name_ja" => "管理者",
+          "group" => 1
       ));
     }
 

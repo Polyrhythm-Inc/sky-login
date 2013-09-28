@@ -8,6 +8,15 @@ use SkyLogin\lib\util\Validator;
 class UserRole extends \SkyLogin\lib\model\dao\BaseDao {
 
 
+  public static function getAll($userId){
+
+    if( empty($userId) ){
+      throw new UnexpectedParameterException;
+    }
+
+    return self::all(array('conditions' => array('user_id' => $userId)));
+  }
+
   public static function getByUserIdAndRoleId($userId, $roleId){
 
     if( empty($userId) || empty($roleId) ){

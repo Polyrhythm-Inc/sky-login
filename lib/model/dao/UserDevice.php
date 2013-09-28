@@ -11,7 +11,7 @@ class UserDevice extends \SkyLogin\lib\model\dao\BaseDao {
     if(empty($userId)){
       throw new UnexpectedParameterException;
     }
-    return self::find_by_user_id($userId);
+    return self::all(array('conditions' => array('user_id' => $userId)));
   }
 
 

@@ -134,13 +134,13 @@ class SessionLogin extends BaseAgent implements AgentProvider {
 
     if(Session::has('isLogin') && Session::has('me') && Session::get('isLogin')){
       $this->isAuthorized = true;
+      parent::decorateUserData();
     }
 
     if(!is_null($callback)){
       $callback(Session::get('me'));
     }
-    
-  }
+  } 
 
   public function logout(){
     Session::destroy();

@@ -40,6 +40,7 @@ Configure::write('enableUserhashId', false);
 
 Configure::write('enableAutoLoginWithDeviceId', false);
 
+Configure::write('enableContainUserRoleData', false);
 
 /*************************************************
 *

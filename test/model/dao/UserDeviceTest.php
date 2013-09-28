@@ -119,7 +119,7 @@ class UserDeviceTest extends \PHPUnit_Framework_TestCase {
       );
 
       $res = UserDevice::getByUserId(1);
-      $this->assertEquals($res->to_array(), $expected);
+      $this->assertEquals($res[0]->to_array(), $expected);
     }
 
     //異常系(引数がnull)
