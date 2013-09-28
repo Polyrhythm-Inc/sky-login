@@ -134,6 +134,11 @@ Enable name based authentication
 ##### additianla info
 If both of enableEmailAuth and enableNameAuth are 'true', You can login either email or user_name.
 
+
+#### enableContainUserRoleData
+If this configuration value is true, System attach user role data to $me(getable Platform::auth() callback arg) and return value of Platform::user()
+<pre>Configure::write('enableContainUserRoleData', true);</pre>
+
 #### enableAutoLoginWithCookie(Not implemented)
 Can auto login, if cookie values for skylogin are transmited from client and they have verify value.
 <pre>Configure::write('enableAutoLoginWithCookie', false);</pre>
