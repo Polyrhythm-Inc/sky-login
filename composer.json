@@ -1,7 +1,5 @@
 {
-  "name": "noppoman/sky-login",
-  "description": "The Laravel Framework.",
-  "keywords": ["framework", "laravel"],
+  "name": "polyrhythm-inc/sky-login",
   "license": "MIT",
   "authors": [
       {
@@ -9,8 +7,14 @@
           "email": "yuki@miketokyo.com"
       }
   ],
+  "repositories": [
+    {
+      "packagist": false
+    }
+  ],
   "require": {
-     "php-activerecord/php-activerecord": "1.1.2"
+    "php": ">=5.4.0",
+    "php-activerecord/php-activerecord": "1.1.2"
   },
   "autoload": {
     "classmap": [
@@ -21,7 +25,9 @@
       "lib/platform",
       "lib/storage",
       "lib/util",
-      "."
+    ],
+		"files": [
+      "./SkyLogin.php"
     ]
   }
 }
