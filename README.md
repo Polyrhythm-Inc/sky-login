@@ -21,18 +21,35 @@ First, Adds bellow codes in composer.json
 ```json
 {
 	"repositories": [
-		{
-			"type": "package",
-			"package": {
-				"name": "Polyrhythm-Inc/sky-login",
-				"version": "0.1.1",
-				"source": {
-						"url": "https://github.com/polyrhythm-inc/sky-login.git",
-						"type": "git",
-						"reference": "0.1.1"
-				}
+			{
+					"type": "package",
+					"package": {
+							"name": "polyrhythm-inc/sky-login",
+							"version": "0.1.3",
+							"source": {
+									"url": "https://github.com/polyrhythm-inc/sky-login.git",
+									"type": "git",
+									"reference": "0.1.3"
+							},
+							"require": {
+								"php-activerecord/php-activerecord": "1.1.2"
+							},
+							"autoload": {
+								"classmap": [
+									"lib/configure",
+									"lib/exception",
+									"lib/http",
+									"lib/model",
+									"lib/platform",
+									"lib/storage",
+									"lib/util"
+								],
+								"files": [
+									"./SkyLogin.php"
+								]
+							}
+					}
 			}
-		}
 	],
 	"require": {
 		"polyrhythm-inc/sky-login": "0.1.1"
@@ -80,9 +97,9 @@ require 'SkyLogin.php';
 ```php
 $req = new \SkyLogin\Request();
 
-if($req->isPost() 
-    && !is_null($req->post('user_name')) 
-    && !is_null($req->post('email')) 
+if($req->isPost()
+    && !is_null($req->post('user_name'))
+    && !is_null($req->post('email'))
     && !is_null($req->post('password')) )
   {
 
@@ -91,7 +108,7 @@ if($req->isPost()
   $email = $req->post('email');
   $password = sha1( $req->post('password') . SkyLogin\Configure::get('securitySalt') );
   $role = $req->post('role');
-  
+
   //user registration
   $status = \SkyLogin\Platform::register(
     array(
@@ -199,7 +216,7 @@ Can auto login, if cookie values for skylogin are transmited from client and the
 
 #### register(array $params, [array $addTransactions])
 <b>Do registration based on $params.</b>  
-If you want to add some logic in transaction block, you need to give function list to second arg. 
+If you want to add some logic in transaction block, you need to give function list to second arg.
 <pre>
 \SkyLogin\Platform::login(array(
     'email' => 'hogehoge',
