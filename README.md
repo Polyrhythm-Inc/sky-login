@@ -16,17 +16,41 @@ https://github.com/sebastianbergmann/phpunit/
 
 ## Installation
 
+First, Adds bellow codes in composer.json
+```json
+"repositories": [
+	{
+		"type": "package",
+		"package": {
+			"name": "Polyrhythm-Inc/sky-login",
+			"version": "0.1.1",
+			"source": {
+					"url": "https://github.com/polyrhythm-inc/sky-login.git",
+					"type": "git",
+					"reference": "0.1.1"
+			}
+		}
+	}
+],
+"require": {
+	"polyrhythm-inc/sky-login": "0.1.1"
+}
+```
+
+composer install and ls migrate.
+
 <b>!! Before enter commands written in bellow, You need to create database for Sky-login module.</b>
-<pre>
-$ git clone git@github.com:noppoMan/sky-login.git
+
+```shell
+$ composer install
 $ cd sky-login
 $ bin/sl migrate -c username:password@localhost[:port]/dbname
-</pre>
+```
 
 ## Usage
 
 ### initialization
-<pre>
+```php
 &lt;?php
 
 require 'SkyLogin.php';
@@ -47,10 +71,10 @@ require 'SkyLogin.php';
 
 //initialize SkyLogin Module
 \SkyLogin\Platform::initialize('SessionLogin');
-</pre>
+```
 
 ### Authentication
-<pre>
+```php
 $req = new \SkyLogin\Request();
 
 if($req->isPost() 
@@ -103,7 +127,7 @@ if($req->isPost()
 
 });
 
-</pre>
+```
 
 
 ## Explanation of configuration value.
