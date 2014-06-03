@@ -6,18 +6,9 @@
 *
 *
 ****************************************/
-
-require_once SKYLOGIN_VENDOR_PATH . '/php-activerecord/ActiveRecord.php';
-require_once SKYLOGIN_VENDOR_PATH . '/SplClassLoader.php';
-
-//auto loader
-$classLoader = new \SplClassLoader(null, SKYLOGIN_ROOT);
-$classLoader->register();
-
 function __boot_loader(){
   require_once SKYLOGIN_LIB_PATH . '/config/boot.php';
 }
-
 
 use SkyLogin\lib\configure\Configure;
 
@@ -68,4 +59,3 @@ Configure::write('enableAutoLoginWithCookie', false);
 Configure::write('cookieAuthExpires', 86400);
 
 Configure::write('cookieName', '__sltk__');
-

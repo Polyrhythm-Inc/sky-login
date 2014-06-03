@@ -10,7 +10,7 @@ use SkyLogin\lib\util\Utility;
 class UtilityTest extends \PHPUnit_Framework_TestCase {
 
   public function testIsValidEmailFormat(){
-    
+
     /*正常系（フォーマットがメールアドレス）*/
     {
 

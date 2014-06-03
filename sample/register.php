@@ -11,7 +11,7 @@ if($req->isPost()) {
 
     $userName = !is_null($req->post('user_name')) ? $req->post('user_name') : null;
     $email = !is_null($req->post('email')) ? $req->post('email') : null;
-    $password = !is_null($req->post('password')) ? 
+    $password = !is_null($req->post('password')) ?
       sha1( $req->post('password') . \SkyLogin\lib\configure\Configure::get('securitySalt') ) : null;
     $role = !is_null($req->post('role')) ? $req->post('role') : 2;
 

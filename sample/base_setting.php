@@ -9,7 +9,7 @@ require_once (dirname(__FILE__) . '/../SkyLogin.php');
     'host' => 'localhost',
     'port' => null,
     'user' => 'root',
-    'passwd' => 'y_takei',
+    'passwd' => 'root',
     'db' => 'skylogin',
   )
 );

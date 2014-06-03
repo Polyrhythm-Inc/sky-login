@@ -3,7 +3,7 @@
 namespace SkyLogin\lib\configure;
 
 class Configure {
-  
+
   protected static $configMap = array();
 
   public static function write($key, $value){

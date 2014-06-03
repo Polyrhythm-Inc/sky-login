@@ -1,16 +1,11 @@
 <?php
 
+require_once __DIR__ . '/../vendor/autoload.php';
+
 date_default_timezone_set('Asia/Tokyo');
 
 //module dependencies
 require_once dirname(__FILE__)    . '/../common.php';
-require_once SKYLOGIN_VENDOR_PATH . '/php-activerecord/ActiveRecord.php';
-require_once SKYLOGIN_VENDOR_PATH . '/SplClassLoader.php';
-
-//auto loader
-$classLoader = new \SplClassLoader(null, SKYLOGIN_ROOT);
-$classLoader->register();
-
 
 if(!isset($_SERVER['SKY_LOGIN_DB_CONFIG_FILE_PATH'])){
   echo "Environment variable SKY_LOGIN_DB_CONFIG_FILE_PATH must required.";
