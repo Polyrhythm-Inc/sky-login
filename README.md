@@ -15,25 +15,28 @@ Sky-login is a login module library work as standalone.
 https://github.com/sebastianbergmann/phpunit/
 
 ## Installation
+Avalable as composer package.
 
 First, Adds bellow codes in composer.json
 ```json
-"repositories": [
-	{
-		"type": "package",
-		"package": {
-			"name": "Polyrhythm-Inc/sky-login",
-			"version": "0.1.1",
-			"source": {
-					"url": "https://github.com/polyrhythm-inc/sky-login.git",
-					"type": "git",
-					"reference": "0.1.1"
+{
+	"repositories": [
+		{
+			"type": "package",
+			"package": {
+				"name": "Polyrhythm-Inc/sky-login",
+				"version": "0.1.1",
+				"source": {
+						"url": "https://github.com/polyrhythm-inc/sky-login.git",
+						"type": "git",
+						"reference": "0.1.1"
+				}
 			}
 		}
+	],
+	"require": {
+		"polyrhythm-inc/sky-login": "0.1.1"
 	}
-],
-"require": {
-	"polyrhythm-inc/sky-login": "0.1.1"
 }
 ```
 
@@ -51,7 +54,7 @@ $ bin/sl migrate -c username:password@localhost[:port]/dbname
 
 ### initialization
 ```php
-&lt;?php
+<?php
 
 require 'SkyLogin.php';
 
