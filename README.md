@@ -4,7 +4,7 @@ sky-login
 Sky-login is a login module library work as standalone.  
 
 ## Release Notes
-
+current-stable : 0.1.4
 
 ## System Required Softwares
 * php (must 5.3.0 or later)
