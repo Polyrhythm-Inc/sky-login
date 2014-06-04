@@ -16,7 +16,6 @@ require_once (dirname(__FILE__) . '/../SkyLogin.php');
   )
 );
 
-
 \SkyLogin\Configure::write('securitySalt', 'o1ty8ha@-m^');
 
 \SkyLogin\Configure::write('enableNameAuth', false);

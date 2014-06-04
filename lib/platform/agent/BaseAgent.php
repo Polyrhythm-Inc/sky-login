@@ -1,15 +1,15 @@
 <?php
 
-namespace SkyLogin\lib\platform\agent;
+namespace SkyLogin\platform\agent;
 
-use SkyLogin\lib\model\User;
-use SkyLogin\lib\storage\Session;
-use SkyLogin\lib\model\dao\UserRole;
-use SkyLogin\lib\model\dao\Role;
-use SkyLogin\lib\configure\Configure;
+use SkyLogin\model\User;
+use SkyLogin\storage\Session;
+use SkyLogin\model\UserRole;
+use SkyLogin\model\Role;
+use SkyLogin\Configure;
 
 abstract class BaseAgent {
-  
+
   protected $isAuthorized = false;
 
   protected $req;
@@ -23,7 +23,7 @@ abstract class BaseAgent {
     $me = Session::get('me');
 
     if(Configure::get('enableContainUserRoleData')){
-      
+
       //over write user info.
       $roles = \SkyLogin\Model\UserRole::getAll($me['id']);
       if(!is_null($roles))

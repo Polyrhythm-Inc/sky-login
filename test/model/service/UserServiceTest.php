@@ -4,15 +4,15 @@ namespace SkyLogin\test\model\service;
 
 require_once dirname(__FILE__) . '/../../boot.php';
 
-use SkyLogin\lib\model\service\UserService;
-use SkyLogin\lib\model\dao\User;
-use SkyLogin\lib\model\dao\UserIdRelation;
-use SkyLogin\lib\model\dao\UserEachPlatformAuthentication;
-use SkyLogin\lib\model\dao\UserRole;
-use SkyLogin\lib\model\dao\UserDevice;
+use SkyLogin\model\UserService;
+use SkyLogin\model\User;
+use SkyLogin\model\UserIdRelation;
+use SkyLogin\model\UserEachPlatformAuthentication;
+use SkyLogin\model\UserRole;
+use SkyLogin\model\UserDevice;
 
-use SkyLogin\lib\exception\UnexpectedParameterException;
-use SkyLogin\lib\util\Utility;
+use SkyLogin\exception\UnexpectedParameterException;
+use SkyLogin\util\Utility;
 
 
 class UserServiceTest extends \PHPUnit_Framework_TestCase {
@@ -47,7 +47,7 @@ class UserServiceTest extends \PHPUnit_Framework_TestCase {
 
       $self = $this;
 
-      $res = UserService::register($testData, 
+      $res = UserService::register($testData,
         array(
           function($me) use ($self) {
             $results = UserRole::add(array(
@@ -64,7 +64,7 @@ class UserServiceTest extends \PHPUnit_Framework_TestCase {
               'os_type_id' => 1
             ));
             $self->assertNotNull(UserDevice::first($results['id']));
-          }          
+          }
         )
       );
       $this->assertNotNull($res);
@@ -81,7 +81,7 @@ class UserServiceTest extends \PHPUnit_Framework_TestCase {
       }catch(\Exception $e){
         $this->assertEquals($e, new UnexpectedParameterException);
       }
-      
+
     }
 
 
@@ -96,7 +96,7 @@ class UserServiceTest extends \PHPUnit_Framework_TestCase {
         'platform_id' => 1,
         'platform_user_id' => 'hogehoge',
         'auth_token' => sha1('hogehoge'),
-        'expires' => '1988-07-22 00:00:00'        
+        'expires' => '1988-07-22 00:00:00'
       );
 
       try{
@@ -104,7 +104,7 @@ class UserServiceTest extends \PHPUnit_Framework_TestCase {
       }catch(\Exception $e){
         $this->assertEquals(get_class($e), "ActiveRecord\DatabaseException");
       }
-      
+
     }
 
   }

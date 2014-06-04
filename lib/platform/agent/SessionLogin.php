@@ -1,16 +1,16 @@
 <?php
 
-namespace SkyLogin\lib\platform\agent;
+namespace SkyLogin\platform\agent;
 
-use SkyLogin\lib\platform\provider\AgentProvider;
-use SkyLogin\lib\platform\agent\BaseAgent;
-use SkyLogin\lib\exception\UnexpectedParameterException;
-use SkyLogin\lib\storage\Session;
-use SkyLogin\lib\model\dao\User;
-use SkyLogin\lib\util\Utility;
-use SkyLogin\lib\configure\Configure;
-use SkyLogin\lib\model\service\UserService;
-use SkyLogin\lib\http\Request;
+use SkyLogin\platform\provider\AgentProvider;
+use SkyLogin\platform\agent\BaseAgent;
+use SkyLogin\exception\UnexpectedParameterException;
+use SkyLogin\storage\Session;
+use SkyLogin\model\User;
+use SkyLogin\util\Utility;
+use SkyLogin\Configure;
+use SkyLogin\model\UserService;
+use SkyLogin\http\Request;
 
 Session::start();
 
@@ -32,7 +32,7 @@ class SessionLogin extends BaseAgent implements AgentProvider {
         'platform_id' => $this->platformId,
         'hash_id' => isset($params['hash_id']) ? $params['hash_id'] : null
       );
-      
+
       if(isset($params['display_name'])){
         $data['display_name'] = $params['display_name'];
       }
@@ -43,7 +43,7 @@ class SessionLogin extends BaseAgent implements AgentProvider {
 
       }catch(\Exception $e){
         if(preg_match('/Duplicate entry/', $e->__toString())){
-          return new \SkyLogin\lib\platform\Status(
+          return new \SkyLogin\platform\Status(
             array(
               'status' => false,
               'message' => 'DUPLICATE_ENTRY',
@@ -53,7 +53,7 @@ class SessionLogin extends BaseAgent implements AgentProvider {
         throw $e;
       }
 
-      return new \SkyLogin\lib\platform\Status(
+      return new \SkyLogin\platform\Status(
         array(
           'status' => true,
           'message' => 'USER_REGISTRATION_SUCCEEDED'
@@ -62,7 +62,7 @@ class SessionLogin extends BaseAgent implements AgentProvider {
 
     }else{
 
-      return new \SkyLogin\lib\platform\Status(
+      return new \SkyLogin\platform\Status(
         array(
           'status' => false,
           'message' => 'REGISTER_USER_ALREADY_EXSITS'
@@ -107,7 +107,7 @@ class SessionLogin extends BaseAgent implements AgentProvider {
       Session::write('isLogin', true);
       Session::write('me', $exists->to_array());
 
-      return new \SkyLogin\lib\platform\Status(
+      return new \SkyLogin\platform\Status(
         array(
           'status' => true,
           'message' => 'USER_LOGIN_SUCCEEDED'
@@ -117,7 +117,7 @@ class SessionLogin extends BaseAgent implements AgentProvider {
     }
     else
     {
-      return new \SkyLogin\lib\platform\Status(
+      return new \SkyLogin\platform\Status(
         array(
           'status' => false,
           'message' => 'USER_LOGIN_FAILED'
@@ -126,7 +126,12 @@ class SessionLogin extends BaseAgent implements AgentProvider {
     }
   }
 
-  public function user($id = null){
+  public function refresh_current_user(){
+    Session::write('me', \SkyLogin\model\User::getByUserId(Session::get('me')['id'])->to_array());
+    return Session::get('me');
+  }
+
+  public function current_user($id = null){
     return Session::get('me');
   }
 
@@ -140,14 +145,10 @@ class SessionLogin extends BaseAgent implements AgentProvider {
     if(!is_null($callback)){
       $callback(Session::get('me'));
     }
-  } 
+  }
 
   public function logout(){
     Session::destroy();
   }
 
 }
-
-
-
-

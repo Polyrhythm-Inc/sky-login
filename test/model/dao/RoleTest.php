@@ -4,9 +4,9 @@ namespace SkyLogin\test\model\dao;
 
 require_once dirname(__FILE__) . '/../../boot.php';
 
-use SkyLogin\lib\exception\UnexpectedParameterException;
-use SkyLogin\lib\util\Utility;
-use SkyLogin\lib\model\dao\Role;
+use SkyLogin\exception\UnexpectedParameterException;
+use SkyLogin\util\Utility;
+use SkyLogin\model\Role;
 
 class RoleTest extends \PHPUnit_Framework_TestCase {
 
@@ -35,7 +35,7 @@ class RoleTest extends \PHPUnit_Framework_TestCase {
       try{
         $res = Role::getById(null);
       }catch(\Exception $e){
-        $this->assertEquals($e, new \SkyLogin\lib\exception\UnexpectedParameterException);
+        $this->assertEquals($e, new \SkyLogin\exception\UnexpectedParameterException);
       }
     }
   }

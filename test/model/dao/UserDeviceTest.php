@@ -4,16 +4,16 @@ namespace SkyLogin\test\model\dao;
 
 require_once dirname(__FILE__) . '/../../boot.php';
 
-use SkyLogin\lib\model\dao\UserDevice;
-use SkyLogin\lib\exception\UnexpectedParameterException;
-use SkyLogin\lib\util\Utility;
+use SkyLogin\model\UserDevice;
+use SkyLogin\exception\UnexpectedParameterException;
+use SkyLogin\util\Utility;
 
 class UserDeviceTest extends \PHPUnit_Framework_TestCase {
 
   protected function setUp(){
     $table = UserDevice::table();
     UserDevice::connection()->query('TRUNCATE ' . $table->table);
-    $json = (array)\SkyLogin\lib\util\Parser::json(SKYLOGIN_FIXTURES_PATH . '/UserDevice.json');
+    $json = (array)\SkyLogin\util\Parser::json(SKYLOGIN_FIXTURES_PATH . '/UserDevice.json');
     UserDevice::create($json);    
   }
 

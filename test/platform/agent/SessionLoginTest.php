@@ -4,8 +4,8 @@ namespace SkyLogin\test\model\dao;
 
 require_once dirname(__FILE__) . '/../../boot.php';
 
-use SkyLogin\lib\exception\UnexpectedParameterException;
-use SkyLogin\lib\platform\agent\SessionLogin;
+use SkyLogin\exception\UnexpectedParameterException;
+use SkyLogin\platform\agent\SessionLogin;
 
 class SessionLoginTest extends \PHPUnit_Framework_TestCase {
 

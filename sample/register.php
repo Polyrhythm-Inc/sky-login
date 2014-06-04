@@ -2,7 +2,7 @@
 
 include dirname(__FILE__) . '/base_setting.php';
 
-$req = new \SkyLogin\Request();
+$req = new \SkyLogin\http\Request();
 
 $stat = true;
 
@@ -12,7 +12,7 @@ if($req->isPost()) {
     $userName = !is_null($req->post('user_name')) ? $req->post('user_name') : null;
     $email = !is_null($req->post('email')) ? $req->post('email') : null;
     $password = !is_null($req->post('password')) ?
-      sha1( $req->post('password') . \SkyLogin\lib\configure\Configure::get('securitySalt') ) : null;
+      sha1( $req->post('password') . \SkyLogin\Configure::get('securitySalt') ) : null;
     $role = !is_null($req->post('role')) ? $req->post('role') : 2;
 
     $status = \SkyLogin\Platform::register(
@@ -24,6 +24,9 @@ if($req->isPost()) {
         'hash_id' => sha1($userName . microtime() . mt_rand(0,1000))
       )
     );
+
+    var_dump($status);
+    exit;
 
     $stat = $status->status;
 

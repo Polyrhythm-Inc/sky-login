@@ -1,11 +1,11 @@
 <?php
 
-namespace SkyLogin\lib\model\dao;
+namespace SkyLogin\model;
 
-use SkyLogin\lib\exception\UnexpectedParameterException;
-use SkyLogin\lib\util\Validator;
+use SkyLogin\exception\UnexpectedParameterException;
+use SkyLogin\util\Validator;
 
-class UserRole extends \SkyLogin\lib\model\dao\BaseDao {
+class UserRole extends \SkyLogin\model\BaseDao {
 
 
   public static function getAll($userId){

@@ -1,6 +1,6 @@
 <?php
 
-namespace SkyLogin\lib\http;
+namespace SkyLogin\http;
 
 class Request {
 

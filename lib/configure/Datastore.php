@@ -1,9 +1,9 @@
 <?php
 
-namespace SkyLogin\lib\configure;
+namespace SkyLogin;
 
 class Datastore {
-  
+
   protected static $configMap = array();
 
   public static $currentUsing = 'default';

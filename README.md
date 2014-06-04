@@ -95,7 +95,7 @@ require 'SkyLogin.php';
 
 ### Authentication
 ```php
-$req = new \SkyLogin\Request();
+$req = new \SkyLogin\http\Request();
 
 if($req->isPost()
     && !is_null($req->post('user_name'))
@@ -106,7 +106,7 @@ if($req->isPost()
   //handle request
   $userName = $req->post('user_name');
   $email = $req->post('email');
-  $password = sha1( $req->post('password') . SkyLogin\Configure::get('securitySalt') );
+  $password = sha1( $req->post('password') . SkyLogin::get('securitySalt') );
   $role = $req->post('role');
 
   //user registration
@@ -180,7 +180,7 @@ If both of enableEmailAuth and enableNameAuth are 'true', You can login either e
 
 
 #### enableContainUserRoleData
-If this configuration value is true, System attach user role data to $me(getable Platform::auth() callback arg) and return value of Platform::user()
+If this configuration value is true, System attach user role data to $me(getable Platform::auth() callback arg) and return value of Platform::current_user()
 <pre>Configure::write('enableContainUserRoleData', true);</pre>
 
 #### enableAutoLoginWithCookie(Not implemented)

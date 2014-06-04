@@ -1,19 +1,19 @@
 <?php
 
-namespace SkyLogin\lib\model\dao;
+namespace SkyLogin\model;
 
-use SkyLogin\lib\exception\UnexpectedParameterException;
-use SkyLogin\lib\util\Validator;
+use SkyLogin\exception\UnexpectedParameterException;
+use SkyLogin\util\Validator;
 
-class User extends \SkyLogin\lib\model\dao\BaseDao {
+class User extends \SkyLogin\model\BaseDao {
 
   public static function getByUserId($id){
-    
+
     if(empty($id)){
       throw new UnexpectedParameterException;
     }
     return self::first($id);
-    
+
   }
 
   public static function getByUserIdRelationSequenceId($id){
@@ -26,7 +26,7 @@ class User extends \SkyLogin\lib\model\dao\BaseDao {
 
   public static function add($params = array(), $passwordHashChange = true){
 
-    Validator::required($params, 
+    Validator::required($params,
       array(
         'name',
         'user_id_relation_sequence_id',

@@ -1,6 +1,6 @@
 <?php
 
-namespace SkyLogin\lib\platform;
+namespace SkyLogin;
 
 class Platform {
 
@@ -13,9 +13,9 @@ class Platform {
   private function __construct(){}
 
   public static function initialize($platformName = null){
-    
+
     __boot_loader();
-    
+
     if($platformName === null){ return; }
 
     $className = self::getPlatformClassName($platformName);
@@ -45,7 +45,7 @@ class Platform {
   }
 
   private static function getPlatformClassName($platformName){
-    $className = "\\SkyLogin\\lib\\platform\\agent\\" . $platformName;
+    $className = "\\SkyLogin\\platform\\agent\\" . $platformName;
     return $className;
   }
 

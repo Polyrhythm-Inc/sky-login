@@ -1,6 +1,6 @@
 <?php
 
-namespace SkyLogin\lib\platform\provider;
+namespace SkyLogin\platform\provider;
 
 interface AgentProvider {
 
@@ -10,7 +10,9 @@ interface AgentProvider {
 
   public function auth($callback = null);
 
-  public function user($id = null);
+  public function current_user();
+
+  public function refresh_current_user();
 
   public function logout();
 

@@ -4,8 +4,8 @@ namespace SkyLogin\test\util;
 
 require_once dirname(__FILE__) . '/../boot.php';
 
-use SkyLogin\lib\exception\UnexpectedParameterException;
-use SkyLogin\lib\util\Utility;
+use SkyLogin\exception\UnexpectedParameterException;
+use SkyLogin\util\Utility;
 
 class UtilityTest extends \PHPUnit_Framework_TestCase {
 

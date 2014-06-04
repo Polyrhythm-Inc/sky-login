@@ -4,9 +4,9 @@ namespace SkyLogin\test\model\dao;
 
 require_once dirname(__FILE__) . '/../../boot.php';
 
-use SkyLogin\lib\model\dao\UserIdRelation;
-use SkyLogin\lib\exception\UnexpectedParameterException;
-use SkyLogin\lib\util\Utility;
+use SkyLogin\model\UserIdRelation;
+use SkyLogin\exception\UnexpectedParameterException;
+use SkyLogin\util\Utility;
 
 class UserIdRelationTest extends \PHPUnit_Framework_TestCase {
 

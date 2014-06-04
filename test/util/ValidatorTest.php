@@ -4,8 +4,8 @@ namespace SkyLogin\test\util;
 
 require_once dirname(__FILE__) . '/../boot.php';
 
-use SkyLogin\lib\exception\UnexpectedParameterException;
-use SkyLogin\lib\util\Validator;
+use SkyLogin\exception\UnexpectedParameterException;
+use SkyLogin\util\Validator;
 
 class ValidatorTest extends \PHPUnit_Framework_TestCase {
 

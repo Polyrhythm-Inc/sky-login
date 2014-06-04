@@ -1,6 +1,6 @@
 <?php
 
-namespace SkyLogin\lib\platform;
+namespace SkyLogin\platform;
 
 class Status {
 
@@ -9,5 +9,5 @@ class Status {
       $this->$key = $value;
     }
   }
-  
+
 }

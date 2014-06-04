@@ -1,6 +1,6 @@
 <?php
 
-namespace SkyLogin\lib\model\dao;
+namespace SkyLogin\model;
 
 \ActiveRecord\Connection::$datetime_format = 'Y-m-d H:i:s';
 

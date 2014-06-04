@@ -4,9 +4,9 @@ namespace SkyLogin\test\model\dao;
 
 require_once dirname(__FILE__) . '/../../boot.php';
 
-use SkyLogin\lib\exception\UnexpectedParameterException;
-use SkyLogin\lib\util\Utility;
-use SkyLogin\lib\model\dao\UserRole;
+use SkyLogin\exception\UnexpectedParameterException;
+use SkyLogin\util\Utility;
+use SkyLogin\model\UserRole;
 
 class UserRoleTest extends \PHPUnit_Framework_TestCase {
 
@@ -21,7 +21,7 @@ class UserRoleTest extends \PHPUnit_Framework_TestCase {
 
     //正常系
     {
-      $json = (array)\SkyLogin\lib\util\Parser::json(SKYLOGIN_FIXTURES_PATH . '/UserRole.json');
+      $json = (array)\SkyLogin\util\Parser::json(SKYLOGIN_FIXTURES_PATH . '/UserRole.json');
       UserRole::create($json);
 
       $expected = array(
@@ -86,7 +86,7 @@ class UserRoleTest extends \PHPUnit_Framework_TestCase {
     //正常系
     {
 
-      $json = (array)\SkyLogin\lib\util\Parser::json(SKYLOGIN_FIXTURES_PATH . '/UserRole.json');
+      $json = (array)\SkyLogin\util\Parser::json(SKYLOGIN_FIXTURES_PATH . '/UserRole.json');
       UserRole::create($json);
 
       $res = UserRole::delteByUserIdAndRoleId(1, 1);

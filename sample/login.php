@@ -12,7 +12,7 @@ if(!$isAuthorized){
   return;
 }
 
-$me = \SkyLogin\Platform::user();
+$me = \SkyLogin\Platform::current_user();
 
 ?>
 
@@ -62,8 +62,3 @@ $me = \SkyLogin\Platform::user();
     </div> <!-- /container -->
   </body>
 </html>
-
-
-
-
-

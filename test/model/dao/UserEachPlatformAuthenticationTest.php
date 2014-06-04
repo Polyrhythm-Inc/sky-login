@@ -4,9 +4,9 @@ namespace SkyLogin\test\model\dao;
 
 require_once dirname(__FILE__) . '/../../boot.php';
 
-use SkyLogin\lib\exception\UnexpectedParameterException;
-use SkyLogin\lib\util\Utility;
-use SkyLogin\lib\model\dao\UserEachPlatformAuthentication;
+use SkyLogin\exception\UnexpectedParameterException;
+use SkyLogin\util\Utility;
+use SkyLogin\model\UserEachPlatformAuthentication;
 
 class UserEachPlatformAuthenticationTest extends \PHPUnit_Framework_TestCase {
 
@@ -40,7 +40,7 @@ class UserEachPlatformAuthenticationTest extends \PHPUnit_Framework_TestCase {
       try{
         $res = UserEachPlatformAuthentication::add($testData);
       }catch(\Exception $e){
-        $this->assertEquals($e, new \SkyLogin\lib\exception\UnexpectedParameterException);
+        $this->assertEquals($e, new \SkyLogin\exception\UnexpectedParameterException);
       }
     }
   }
@@ -100,7 +100,7 @@ class UserEachPlatformAuthenticationTest extends \PHPUnit_Framework_TestCase {
       try{
         $res = UserEachPlatformAuthentication::getByPlatformIdAndAuthToken($pid, $token);
       }catch(\Exception $e){
-        $this->assertEquals($e, new \SkyLogin\lib\exception\UnexpectedParameterException);
+        $this->assertEquals($e, new \SkyLogin\exception\UnexpectedParameterException);
       }
     }
   }
@@ -150,7 +150,7 @@ class UserEachPlatformAuthenticationTest extends \PHPUnit_Framework_TestCase {
       try{
         $res = UserEachPlatformAuthentication::updateByPlatformIdAndUserId($params, 1, 1);
       }catch(\Exception $e){
-        $this->assertEquals($e, new \SkyLogin\lib\exception\UnexpectedParameterException);
+        $this->assertEquals($e, new \SkyLogin\exception\UnexpectedParameterException);
       }
 
     }

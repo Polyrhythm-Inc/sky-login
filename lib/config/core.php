@@ -10,7 +10,7 @@ function __boot_loader(){
   require_once SKYLOGIN_LIB_PATH . '/config/boot.php';
 }
 
-use SkyLogin\lib\configure\Configure;
+use SkyLogin\Configure;
 
 /*************************************************
 *

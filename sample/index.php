@@ -2,17 +2,17 @@
 
 include dirname(__FILE__) . '/base_setting.php';
 
-$req = new \SkyLogin\Request();
+$req = new \SkyLogin\http\Request();
 
 $stat = true;
 
 if($req->isPost()) {
-  
+
   if($req->post('user_name') !== "" && $req->post('password') !== "" ){
 
     $userName = !is_null($req->post('user_name')) ? $req->post('user_name') : null;
-    $password = !is_null($req->post('password')) ? 
-      sha1( $req->post('password') . \SkyLogin\Configure::get('securitySalt') ) : null;
+    $password = !is_null($req->post('password')) ?
+      sha1( $req->post('password') . \SkyLogin::get('securitySalt') ) : null;
 
     $status = \SkyLogin\Platform::login(
       array(

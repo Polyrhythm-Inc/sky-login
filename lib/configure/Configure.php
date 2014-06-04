@@ -1,6 +1,6 @@
 <?php
 
-namespace SkyLogin\lib\configure;
+namespace SkyLogin;
 
 class Configure {
 

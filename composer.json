@@ -7,11 +7,6 @@
           "email": "yuki@miketokyo.com"
       }
   ],
-  "repositories": [
-    {
-      "packagist": false
-    }
-  ],
   "require": {
     "php": ">=5.4.0",
     "php-activerecord/php-activerecord": "1.1.2"
@@ -24,7 +19,7 @@
       "lib/model",
       "lib/platform",
       "lib/storage",
-      "lib/util",
+      "lib/util"
     ],
 		"files": [
       "./SkyLogin.php"

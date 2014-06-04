@@ -1,19 +1,19 @@
 <?php
 
-namespace SkyLogin\lib\model\service;
+namespace SkyLogin\model;
 
-use SkyLogin\lib\model\dao\User;
-use SkyLogin\lib\model\dao\UserIdRelation;
-use SkyLogin\lib\model\dao\UserEachPlatformAuthentication;
-use SkyLogin\lib\util\Utility;
-use SkyLogin\lib\util\Validator;
-use SkyLogin\lib\configure\Configure;
+use SkyLogin\model\User;
+use SkyLogin\model\UserIdRelation;
+use SkyLogin\model\UserEachPlatformAuthentication;
+use SkyLogin\util\Utility;
+use SkyLogin\util\Validator;
+use SkyLogin\Configure;
 
 class UserService {
 
   public static function register($params = array(), $addTransactions = array()){
 
-    Validator::required($params, 
+    Validator::required($params,
       array(
         'user_name',
         'email',
@@ -31,7 +31,7 @@ class UserService {
     $hashId = $params['hash_id'];
 
     try{
-      
+
       $c = User::connection();
 
       $c->transaction();
@@ -71,7 +71,7 @@ class UserService {
       }
 
       if(isset($params['auth_token'])){
-        $data['auth_token'] = $params['auth_token']; 
+        $data['auth_token'] = $params['auth_token'];
       }
 
       if(isset($params['expires'])){
@@ -82,7 +82,7 @@ class UserService {
       if(empty($res)){
         throw new Exception('User registration was failed.');
       }
-      
+
       foreach($addTransactions as $val){
         $val($user->to_array());
       }
@@ -92,9 +92,9 @@ class UserService {
       return User::first($user->id);
 
     }catch(\Exception $e){
-      
+
       $c->rollback();
-      
+
       throw $e;
     }
 

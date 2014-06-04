@@ -1,10 +1,10 @@
 <?php
 
-namespace SkyLogin\lib\model\dao;
+namespace SkyLogin\model;
 
-use SkyLogin\lib\exception\UnexpectedParameterException;
-use SkyLogin\lib\util\Validator;
-use SkyLogin\lib\util\Parser;
+use SkyLogin\exception\UnexpectedParameterException;
+use SkyLogin\util\Validator;
+use SkyLogin\util\Parser;
 
 class Role { 
 
@@ -20,7 +20,7 @@ class Role {
     }else{
       self::$jsonPath = SKYLOGIN_MASTER_PATH . '/role.json';
     }
-    self::$roles = \SkyLogin\lib\util\Parser::json(self::$jsonPath); 
+    self::$roles = \SkyLogin\util\Parser::json(self::$jsonPath); 
   }
 
   public static function getMap(){
