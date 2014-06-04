@@ -4,7 +4,7 @@ namespace SkyLogin\model;
 
 use SkyLogin\exception\UnexpectedParameterException;
 
-class UserIdRelation extends \SkyLogin\model\BaseDao { 
+class UserIdRelation extends \SkyLogin\model\BaseDao {
 
   public static function add($hashId){
 
@@ -23,9 +23,9 @@ class UserIdRelation extends \SkyLogin\model\BaseDao {
     $sql .= "({$hashId}, $castValue, '{$now}', '{$now}')";
 
     try {
-      
+
       if(!self::connection()->connection->query($sql)){
-        throw new \ActiveRecord\DatabaseException($this);  
+        throw new \ActiveRecord\DatabaseException($this);
       }
 
       return array(
@@ -35,7 +35,7 @@ class UserIdRelation extends \SkyLogin\model\BaseDao {
     } catch (\PDOException $e) {
       throw new \ActiveRecord\DatabaseException($e);
     }
-    
+
   }
 
   public static function getByHashId($hashId){
@@ -49,14 +49,15 @@ class UserIdRelation extends \SkyLogin\model\BaseDao {
     $table = self::table();
     $sql = "SELECT id, hash_id, hash_id_dec FROM {$table->table} ";
     $castValue = 'CAST(x' . $hashId . " as UNSIGNED)";
+
     $sql .= "WHERE hash_id_dec = " . $castValue;
 
     try {
-    
+
       $stmt = self::connection()->connection->query($sql);
 
       if(!$stmt){
-        throw new \ActiveRecord\DatabaseException($this);  
+        throw new \ActiveRecord\DatabaseException($this);
       }
 
       return $stmt->fetch(\PDO::FETCH_ASSOC);

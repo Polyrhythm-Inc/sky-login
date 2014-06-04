@@ -10,9 +10,9 @@ interface AgentProvider {
 
   public function auth($callback = null);
 
-  public function current_user();
+  public function currentUser();
 
-  public function refresh_current_user();
+  public function refreshCurrentUser();
 
   public function logout();
 

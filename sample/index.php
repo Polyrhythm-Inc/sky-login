@@ -11,8 +11,7 @@ if($req->isPost()) {
   if($req->post('user_name') !== "" && $req->post('password') !== "" ){
 
     $userName = !is_null($req->post('user_name')) ? $req->post('user_name') : null;
-    $password = !is_null($req->post('password')) ?
-      sha1( $req->post('password') . \SkyLogin::get('securitySalt') ) : null;
+    $password = !is_null($req->post('password')) ? $req->post('password') : null;
 
     $status = \SkyLogin\Platform::login(
       array(
@@ -24,7 +23,6 @@ if($req->isPost()) {
 }
 
 \SkyLogin\Platform::auth(function($me){
-
   $isAuthorized = \SkyLogin\Platform::isAuthorized();
 
   if($isAuthorized){
@@ -37,6 +35,7 @@ if($req->isPost()) {
 
 <html>
   <head>
+      <meta charset="utf-8">
       <link href="/sky-login/sample/css/bootstrap.css" rel="stylesheet">
       <style type="text/css">
         body {

@@ -25,9 +25,6 @@ if($req->isPost()) {
       )
     );
 
-    var_dump($status);
-    exit;
-
     $stat = $status->status;
 
     if($stat){

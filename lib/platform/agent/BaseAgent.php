@@ -18,26 +18,26 @@ abstract class BaseAgent {
     return $this->isAuthorized;
   }
 
-  protected function decorateUserData(){
+  protected function decorateUserData($user){
 
-    $me = Session::get('me');
+    // if(Configure::get('enableContainUserRoleData')){
+    //
+    //   //over write user info.
+    //   $roles = \SkyLogin\Model\UserRole::getAll($me['id']);
+    //   if(!is_null($roles))
+    //   {
+    //     $me['role'] = array();
+    //     foreach($roles as $key => $val){
+    //       $me['role'][] = $val->to_array();
+    //     }
+    //   }
+    // }else{
+    //   $me['role'] = array();
+    // }
+    //
+    // Session::write('me', $me);
 
-    if(Configure::get('enableContainUserRoleData')){
-
-      //over write user info.
-      $roles = \SkyLogin\Model\UserRole::getAll($me['id']);
-      if(!is_null($roles))
-      {
-        $me['role'] = array();
-        foreach($roles as $key => $val){
-          $me['role'][] = $val->to_array();
-        }
-      }
-    }else{
-      $me['role'] = array();
-    }
-
-    Session::write('me', $me);
+    return $user;
   }
 
   public function hasRole($key){

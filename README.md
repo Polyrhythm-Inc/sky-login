@@ -180,7 +180,7 @@ If both of enableEmailAuth and enableNameAuth are 'true', You can login either e
 
 
 #### enableContainUserRoleData
-If this configuration value is true, System attach user role data to $me(getable Platform::auth() callback arg) and return value of Platform::current_user()
+If this configuration value is true, System attach user role data to $me(getable Platform::auth() callback arg) and return value of Platform::currentUser()
 <pre>Configure::write('enableContainUserRoleData', true);</pre>
 
 #### enableAutoLoginWithCookie(Not implemented)

@@ -12,7 +12,7 @@ if(!$isAuthorized){
   return;
 }
 
-$me = \SkyLogin\Platform::current_user();
+$me = \SkyLogin\Platform::currentUser();
 
 ?>
 
@@ -56,7 +56,7 @@ $me = \SkyLogin\Platform::current_user();
   <body>
     <div class="container">
 
-      <h4>Login Succeeded. Login as <?php echo $me['name'];?>.</h4>
+      <h4>Login Succeeded. Login as <?php echo $me->name;?>.</h4>
       <a href="/sky-login/sample/logout.php">Logout</a>
 
     </div> <!-- /container -->

@@ -53,8 +53,14 @@ class UserService {
         'name' => $userName,
         'display_name' => isset($params['display_name']) ? $params['display_name'] : $userName,
         'email' => $email,
-        'password' => $password,
+        'password' => sha1( $password . \SkyLogin\Configure::get('securitySalt') )
       );
+
+      if(isset($params['custom_attributes'])){
+          foreach($params['custom_attributes'] as $key => $val){
+            $data[$key] = $val;
+          }
+      }
 
       $user = User::add($data);
       if(empty($user)){

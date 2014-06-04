@@ -18,6 +18,8 @@ class SessionLogin extends BaseAgent implements AgentProvider {
 
   private $platformId = 1;
 
+  private static $currentUser = null;
+
   public function register($params = array(), $addTransactions = array()){
 
     $exsits = User::getByNameAndEmailAndPasswd($params['user_name'], $params['email'], $params['password']);
@@ -81,6 +83,8 @@ class SessionLogin extends BaseAgent implements AgentProvider {
 
     $exsits = false;
 
+    $password = sha1( $params['password'] . \SkyLogin\Configure::get('securitySalt') );
+
     $enableEmailAuth = Configure::get('enableEmailAuth');
     $enableNameAuth = Configure::get('enableNameAuth');
 
@@ -88,24 +92,25 @@ class SessionLogin extends BaseAgent implements AgentProvider {
 
       $isEmaiLogin = Utility::isValidEmailFormat($params['login']);
       if($isEmaiLogin){
-        $exists = User::getByEmailAndPasswd($params['login'], $params['password']);
+        $exists = User::getByEmailAndPasswd($params['login'], $password);
       }else{
-        $exists = User::getByNameAndPasswd($params['login'], $params['password']);
+        $exists = User::getByNameAndPasswd($params['login'], $password);
       }
-
     }
     else if (!$enableEmailAuth && $enableNameAuth){
-      $exists = User::getByNameAndPasswd($params['login'], $params['password']);
+      $exists = User::getByNameAndPasswd($params['login'], $password);
+
     }
     else
     {
       //default
-      $exists = User::getByNameAndPasswd($params['login'], $params['password']);
+      $exists = User::getByNameAndPasswd($params['login'], $password);
     }
 
-    if(!is_null($exists)){
+    if(!empty($exists)){
       Session::write('isLogin', true);
-      Session::write('me', $exists->to_array());
+      Session::write('me.id', $exists->id);
+      $this->auth();
 
       return new \SkyLogin\platform\Status(
         array(
@@ -126,24 +131,26 @@ class SessionLogin extends BaseAgent implements AgentProvider {
     }
   }
 
-  public function refresh_current_user(){
-    Session::write('me', \SkyLogin\model\User::getByUserId(Session::get('me')['id'])->to_array());
-    return Session::get('me');
+  public function refreshCurrentUser(){
+    self::$currentUser = User::getByUserId(self::$currentUser->id);
+    return self::$currentUser;
   }
 
-  public function current_user($id = null){
-    return Session::get('me');
+  public function currentUser(){
+    return self::$currentUser;
   }
 
   public function auth($callback = null){
 
-    if(Session::has('isLogin') && Session::has('me') && Session::get('isLogin')){
+    if(Session::has('isLogin') && Session::has('me.id') && Session::get('isLogin')){
       $this->isAuthorized = true;
-      parent::decorateUserData();
+      if(is_null(self::$currentUser)){
+        self::$currentUser = User::getByUserId(Session::get('me.id'));
+      }
     }
 
     if(!is_null($callback)){
-      $callback(Session::get('me'));
+      $callback(self::$currentUser);
     }
   }
 
