@@ -25,11 +25,11 @@ First, Adds bellow codes in composer.json
 					"type": "package",
 					"package": {
 							"name": "polyrhythm-inc/sky-login",
-							"version": "0.1.3",
+							"version": "current-stable",
 							"source": {
 									"url": "https://github.com/polyrhythm-inc/sky-login.git",
 									"type": "git",
-									"reference": "0.1.3"
+									"reference": "current-stable"
 							},
 							"require": {
 								"php-activerecord/php-activerecord": "1.1.2"
@@ -52,7 +52,7 @@ First, Adds bellow codes in composer.json
 			}
 	],
 	"require": {
-		"polyrhythm-inc/sky-login": "0.1.1"
+		"polyrhythm-inc/sky-login": "current-stable"
 	}
 }
 ```
