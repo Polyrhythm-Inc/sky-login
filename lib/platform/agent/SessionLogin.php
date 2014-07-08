@@ -32,8 +32,11 @@ class SessionLogin extends BaseAgent implements AgentProvider {
         'password' => $params['password'],
         'role' => $params['role'],
         'platform_id' => $this->platformId,
-        'hash_id' => isset($params['hash_id']) ? $params['hash_id'] : null
+        'hash_id' => isset($params['hash_id']) ? $params['hash_id'] : null,
       );
+      if (!empty($params['custom_attributes'])){
+        $data['custom_attributes'] = $params['custom_attributes'];
+      }
 
       if(isset($params['display_name'])){
         $data['display_name'] = $params['display_name'];
